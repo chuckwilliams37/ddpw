@@ -1,0 +1,25 @@
+<%
+if ( typeof ( this.classificationNames ) != 'undefined'  ) {
+
+%>
+	
+	<%
+	var i = 0;
+	for ( var classificationGroup in this.classificationNames ) {
+		console.debug ( classificationGroup );
+	%>
+	<%== $.View("./application/admin_controllers/outline_panel_controller/views/select_renderer.ejs",
+		{
+			groupName:  classificationGroup
+			,groupPos: i
+			,formObjId : "classificationGroupSelect"+i
+			,classificationNames : this.classificationNames
+			,selectedClassifications : this.selectedClassifications
+		})%>
+	<%		i++;
+	}
+} else {
+	console.debug ("outline panel classifications is undefined: " );
+} 
+%>
+<div class="clear both" >&nbsp;</div>

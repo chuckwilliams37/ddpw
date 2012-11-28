@@ -1,0 +1,10 @@
+<div class="ui-widget-header">
+	Display This Prompt to:
+	<button class="selectClassificationsButton" title="Select Display Filters (Classifications)">Select</button>
+</div>
+<hr />
+<div class="selectedClassificiationsGroupsContainer">
+	<%== $.View ( "./application/admin_controllers/classification_panel_controller/views/classification_panel_group_renderer.ejs"
+	,  {classificationGroups : this.classificationGroups, selectedModel : this.selectedModel } ) 
+	%>
+</div>

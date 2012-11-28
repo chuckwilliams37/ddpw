@@ -1,0 +1,13 @@
+<%
+	var getCommandRenderer = Level3_ddpw_administration.Library.Level3.Ddpw.Commands.CommandFactory.getCommandRenderer,
+	createCommand = Level3_ddpw_administration.Library.Level3.Ddpw.Commands.CommandFactory.createCommandInstance;
+%>
+<ul>
+	<% for (i = 0; i < commandTypes.length; i++) {%> 
+		<% 
+			var command = createCommand( commandTypes[i] );
+			console.debug (" rendering menu selection item for command type: " + commandTypes[i] , {command: command} ) 
+		%>
+		<%== $.View (getCommandRenderer( commandTypes[i] , "create_command_dialog_menu_item" ), {command : command}) %>			
+	<% } %>
+</ul>

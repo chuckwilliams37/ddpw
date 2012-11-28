@@ -1,0 +1,18 @@
+<% var underscoredGroupName = $.String.underscore(this.groupName) 
+console.debug (this);
+%>
+<div class="selection-container" >
+	<label> <%= this.groupName %></label>
+		<br />
+		<select name="classifications[<%=underscoredGroupName%>][0]" id="classifications[<%=underscoredGroupName%>][0]" class="outline-classification-select">
+		<% 
+			for (var i=0; i < this.classificationNames[this.groupName].length ; i++ ) {
+				var optionValue = this.classificationNames[this.groupName][i];
+				var isOptionSelected = optionValue == this.selectedClassifications[underscoredGroupName][0] ? true : false;
+		%>
+			<option value="<%= optionValue %>"
+				<%= isOptionSelected ? "selected" : "" %>
+			><%= optionValue %></option>
+			<%	}%>
+	</select>
+</div>

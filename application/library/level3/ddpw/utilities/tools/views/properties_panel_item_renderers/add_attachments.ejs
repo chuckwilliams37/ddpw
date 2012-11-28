@@ -1,0 +1,25 @@
+<div id="propertiesPanelPrompt">
+	<form <%=this.selectedModel %>>
+		<div>
+			<label for="text" title="This is the text that will be displayed to the user as the 'question' or 'prompt' that should evoke a response.">Prompt Text:
+			<textArea rows="5" cols="28" name="text" id="text" ><%= this.selectedModel.text %></textarea>
+			</label>
+		</div>
+		<div id="propertiesPanelPromptTypeControlsContainer" class="responseOptionItemContainer responseOptionsListContainer">
+			<%== $.View("./application/library/level3/ddpw/utilities/tools/views/properties_panel_item_renderers/div_required_forced.ejs", this.selectedModel ) %>
+			
+			<div>
+				<div class="ui-widget-header">
+					<p> Commands <button class="addCommand" title="Add Commands"></button> </p>				
+				</div>
+				<div>
+					<%== $.View("./application/admin_controllers/commands_item_controller/views/commands_list_container.ejs",{commands: this.selectedModel.responseOptions[0].commands}) %>
+				</div>
+			</div>
+		</div>		
+		<div>
+			<button id="saveButton">Save</button>
+			<button id="cancelButton">Cancel</button>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,107 @@
+
+			<div id = "prefillDiv" class="prefillPromptContainer" style="width:60%;" 
+		<%= plugin('level3_ddpw_administration_prompt_prefill', { selectedModel: this.selectedModel }) %>
+			>			
+			<div >
+				<% var prefillLength = this.selectedModel.prefillData.length; %>
+				
+						<select id="prefillType" style="float:left; width:80%;" name="prefillType" 
+								class="promptPrefillType" >		
+													
+									<% 
+										switch ( this.selectedModel.type ) {
+											case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.CHECKBOXGROUP:
+											case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.RADIOGROUP:
+											case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.SIMPLEDIALOG:
+												%>
+												<option name="this.selectedModel.prefillData[this.i].prefillType" value="None" 
+										         <%= typeof(this.selectedModel.prefillData[this.i].prefillType) != 'undefined'? this.selectedModel.prefillData[this.i].prefillType == "None" ? "selected" :"":""%> >
+										         None</option>
+										         <%		         							
+											case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.SELECT:
+											  	var prefillType = typeof(this.selectedModel.prefillData[this.i].prefillType) != 'undefined' 
+											  						? this.selectedModel.prefillData[this.i].prefillType 
+											  						: "";
+												this.selectedModel.responseOptions.each( function( index , responseOption) { %>								
+											    <option value="<%=responseOption.label%>"  <%= typeof(prefillType) != 'undefined' ? prefillType  == responseOption.label ? "selected" : "":""%>>
+											    	<%= "'" + responseOption.label +"' value=" + responseOption.value %>
+											    </option>
+											 <%	});	
+											break;
+											case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.TEXTINPUT:
+											case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.TEXTAREA:
+											case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.DATEPICKER:
+											case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.MULTISELECTDATAGRIDWITHFILTER:
+												%>
+												<option name="this.selectedModel.prefillData[this.i].prefillType" value="Custom" 
+										         <%= typeof(this.selectedModel.prefillData[this.i].prefillType) != 'undefined'? this.selectedModel.prefillData[this.i].prefillType == "Custom" ? "selected" :"":""%> >
+										         Custom</option>						         							
+												<% 
+												//do nothing - response options are not distinctly assignable for these prompt types.
+											break;
+											default : 
+												throw new Error ("Default (prefill) selections not handled for prompt type: " + prompt.type);
+											break;
+										}
+										
+										var prefillType = typeof(this.selectedModel.prefillData[this.i].prefillType) != 'undefined' ? this.selectedModel.prefillData[this.i].prefillType : "";
+										$.each(this.environmentVarList, function(key,val) {
+										%>								
+									    <option value="<%=key%>"  <%= typeof(prefillType) != 'undefined' ? prefillType  == key ? "selected" : "":""%>>
+									    	<%=key%>
+									    </option>
+									 <%	});	%>	  	
+						</select>
+						<div style="float:right;" class="removePrefillOption[<%=this.i%>]" id="removePrefillOption[<%=this.i%>]">
+								<%	if (typeof (this.selectedModel.type) != 'undefined' && this.selectedModel.type == "checkboxGroup" && this.i >0) { %>
+									<button name="removeAnotherPrefillOption[<%=this.i%>]" id="removeAnotherPrefillOption[<%=this.i%>]"  class="remove-prefill-option" title="Remove Prefill" />
+
+								<% } %>
+					   </div>						
+							<div style="float:left;"  class="addPrefillOption" id="addPrefillOption[<%=this.i%>]">
+								<%	if (typeof (this.selectedModel.type) != 'undefined' && this.selectedModel.type == "checkboxGroup" ) { %>
+ 									<button name="addAnotherPrefillOption[<%=this.i%>]" id="addAnotherPrefillOption[<%=this.i%>]"  class="addPrefill" title="Add Prefill" />
+								<% } %>
+							</div>
+						
+				</div>		
+				<div class="customValDiv"  style="hight:60%;width:100%;" >	
+						
+				<% 
+				switch ( this.selectedModel.type ) {
+					case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.CHECKBOXGROUP:
+					case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.RADIOGROUP:
+					case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.SELECT:
+					case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.SIMPLEDIALOG:
+						//do nothing
+					break;
+					case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.TEXTINPUT:
+						%>
+						<input id="promptCustomVal" class="customValue"  type="text" name="this.selectedModel.prefillData[<% this.i %>][prefillValue]" value="<%=this.selectedModel.attr("defaultResponse")[0].attr("value") %>" /> 
+						<% 
+					break;
+					case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.TEXTAREA:
+						%>
+						<textarea id="promptCustomVal" class="customValue" type="text" name="this.selectedModel.prefillData[<% this.i %>][prefillValue]" rows="5" cols="25" ><%=this.selectedModel.attr("defaultResponse")[0].attr("value") %></textarea>
+						<% 
+					break;
+					case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.DATEPICKER:
+						%>
+						<div <%= Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.Tools.Controllers.BuilderPanelToolControllers.DatePicker %> >
+							<input id="promptCustomVal" class="date_picker" type="text" name="this.selectedModel.prefillData[<% this.i %>][value]" value="<%= this.selectedModel.attr("defaultResponse")[0].attr("value") %>" title="VALUE: <%= this.selectedModel.attr("defaultResponse")[0].attr("value")%>" />
+						</div>
+						<% 
+					break;
+					//case Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.MULTISELECTDATAGRIDWITHFILTER:
+					//break;
+					default : 
+						throw new Error ("Default (prefill) selections not handled for prompt type: " + prompt.type);
+					break;
+				}
+				%> 
+						 
+				</div>	
+				
+				
+			</div>
+		

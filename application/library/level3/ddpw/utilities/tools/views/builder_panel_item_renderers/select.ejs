@@ -1,0 +1,23 @@
+<%# console.debug ("rendering select item: " , this ) %>
+
+<div>
+	<p><%= this.text %></p>
+	<select>
+		<% 
+		this.responseOptions.each ( function ( index, responseOption ) {%>
+			<option value="<%= responseOption['value']%>">
+				<%= responseOption['label']%>
+			</option>
+		<% 
+		}); %>
+	</select>
+	<hr />
+	<% 
+		this.responseOptions.each ( function (index, responseOption ) {
+		%>
+		<div class="builderPanelItemResponseOptionContainer" <%= responseOption %> >
+			<%= responseOption.label %> <br/>
+			<%== $.View('./application/admin_controllers/builder_panel_controller/views/builder_panel_prompt_list_container.ejs', responseOption )%>
+		</div>
+	<% }); %>
+</div>

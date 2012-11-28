@@ -1,0 +1,30 @@
+<div id="propertiesPanelPrompt">
+	<form <%=this.selectedModel %>>
+		<div>
+			<label for="text" title="This is the text that will be displayed to the user as the 'question' or 'prompt' that should evoke a response.">Prompt Text:</label>
+			<textarea name="text" rows="6" cols="25" ><%= this.selectedModel.text %></textarea>
+		</div>
+		<div class="ui-widget-header">
+			<label for="isPopup" title="This option determines whether the dialog will appear inline with other prompts or create a modal popup dialog.">Popup?</label>
+			<input class ="popUpClass" type="checkbox" name="isPopup" id="isPopup" value="true" <%= this.selectedModel.isPopup == "true" || this.selectedModel.isPopup == true ? "checked" : "" %> />
+			<div class = "offChangeDiv">
+			<div >
+				<label for="title" title="When the 'Popup' is selected - this is the text that will be displayed in the dialog popup title bar.">Popup title:</label>
+				<input type="text" name="title" value="<%= this.selectedModel.title %>" />
+			</div>
+			<label for="offerChange" title="This option determines whether the interface will ofer a 'change' link after the user has made a selection.">Offer 'Change' post-selection?</label>
+			<input type="checkbox" name="offerChange" id="offerChange" value="true" <%= this.selectedModel.offerChange == "true" || this.selectedModel.offerChange == true ? "checked" : "" %> />
+		</div>
+		</div>
+		<%== $.View("./application/library/level3/ddpw/utilities/tools/views/properties_panel_item_renderers/div_required_forced.ejs", this.selectedModel ) %>
+		<div class="clear both" >&nbsp;</div>
+		<div id="propertiesPanelPromptTypeControlsContainer">
+			<%== $.View("./application/admin_controllers/properties_panel_controller/views/properties_panel_prompt_response_options_list_container.ejs",{responseOptions : this.selectedModel.responseOptions , commands : this.selectedModel.commands}) %>
+		</div>
+		<button class="addAnotherResponseOption"> Add Another Selection</button>
+		<div>
+			<button id="saveButton">Save</button>
+			<button id="cancelButton">Cancel</button>
+		</div>
+	</form>
+</div>

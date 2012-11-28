@@ -1,0 +1,13 @@
+<li class="edit">
+	<form <%= this %>>
+	<input id="name" name="name" type="text" value="<%= name %>"/>
+	<div>Effective Date Range: 
+		<input name="effectiveDate" id="effectiveDate" type="text" value="<%= effectiveDate %>"/> 
+		- <input name="expirationDate" id="expirationDate" type="text" value="<%= expirationDate %>" />
+	</div>
+	<div class="action_buttons">
+		<input type="submit" value="Save" <%= this %>/>
+		<input type="submit" value="Cancel" />
+	</div>
+	</form>
+</li>

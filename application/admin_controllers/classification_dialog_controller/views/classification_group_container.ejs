@@ -1,0 +1,13 @@
+<td class="classificationGroup" width="240">
+	<div class="ui-widget-header" ><input title="Select to select all classifications of type: '<%= this.groupName %>' " type="checkbox" class="check-all" value="true"> <%= this.groupName %></div>	
+	<div class="classificationListContainer">
+		<ul>
+			<%
+			for(var classificationKey in this.items){
+			var classification = $.trim(this.items[classificationKey]);
+				%>
+				<%== $.View ("./application/admin_controllers/classification_dialog_controller/views/classification_item_container.ejs", {groupName: this.groupName, classification : classification, classificationKey : classificationKey}) %>
+			<%}%>
+		</ul>
+	</div>
+</td>

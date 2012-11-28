@@ -1,0 +1,15 @@
+<div class="ui-widget-header">
+			Required/Forced
+</div>
+<div class="required-forced" >
+	<div>
+		<label for="isResponseRequired" title="This option will cause this prompt to indicate to the user that a response is required. It will also invoke any validation built into the prompt type.">Required:
+		<input type="checkbox" value="true" name="isResponseRequired" id="isResponseRequired"  <%= this.isResponseRequired == "true" || this.isResponseRequired == true ? "checked" : "" %> /> <br />
+	</div>
+	<div class="spacer">&nbsp;</div>
+	<div>
+		<label for="isResponseForced" title="This option will force the user to make a selection.">Forced:
+		<input type="checkbox" value="true" name="isResponseForced" id="isResponseForced" <%=  this.isResponseForced == "true" || this.isResponseForced == true ? "checked" : "" %> /> <br />
+	</div>
+</div>
+<div class="clear both" >&nbsp;</div>

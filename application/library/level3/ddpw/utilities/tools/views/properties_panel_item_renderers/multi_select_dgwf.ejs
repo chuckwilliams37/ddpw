@@ -1,0 +1,57 @@
+<div id="propertiesPanelPrompt" 
+<%= plugin('level3_ddpw_administration_library_level3_ddpw_utilities_tools_properties_panel_multi_select_data_grid_with_filter', { prompt: this }) %>
+ >
+	<form <%=this %>>
+		<div>
+			<label for="text">Prompt Title/Text</label>
+			<textarea rows="4" cols="25" name="text" id="text"><%= this.text %></textarea>
+		</div>
+		<div id="propertiesPanelPromptTypeControlsContainer">
+			<%== $.View("./application/library/level3/ddpw/utilities/tools/views/properties_panel_item_renderers/div_required_forced.ejs", this ) %>
+			
+			<div class="ui-widget-header">
+						Display Settings:
+			</div>
+			<div class="entitySelectionContainer">
+				<label for="entitySelection" 
+					title="This will determine the data presented to the user in a grid form.">
+					Present to User:
+				</label>
+				<select id="entitySelection" name="entitySelection" /> <%# will be filled by controller %>
+				<button class="addFilterButton">Add Filter</button>				
+				
+				<% if ( this.selectedFilters && this.selectedFilters.length ) { %>
+					<div class="filterSelectionsListContainer hidden">
+						<ul class="filterSelectionsList">
+						<li class="filterSelectionListItemHeader">
+							<div class="filterSelectionListItemLabelHeader">Filter By:</div>
+							<div class="filterValueListItemLabelHeader" >Using:</div>
+						</li>
+						<div class="clear both" >&nbsp;</div>
+						<% $.each ( this.selectedFilters, function ( index , selectedFilter ) { %>
+							<%== $.View("./application/library/level3/ddpw/utilities/tools/views/properties_panel_item_renderers/msdgwf_filter_selection_item.ejs", {selectedFilter:selectedFilter} ) %>
+						<% }); %>
+						</ul>
+					</div>
+				<% }; %>
+			</div>
+			<div class="clear both">&nbsp;</div>
+			<div>
+				<label for="allowMultiple" title="Enable or Disable multiple selections. Will limit to 1 selection if disabled. Will auto-deselect other selections on new selection.">Allow Multiple Selections:
+				<input type="checkbox" value="true" name="allowMultiple" id="allowMultiple"  <%= this.allowMultiple == "true" || this.allowMultiple == true ? "checked" : "" %> /> <br />
+			</div>
+			<div class="responseOptionItemContainer">
+				<div class="ui-widget-header">
+					<p> Commands <button class="addCommand" title="Add Commands"></button> </p>				
+				</div>
+				<div>
+					<%== $.View("./application/admin_controllers/commands_item_controller/views/commands_list_container.ejs",{commands: this.responseOptions[0].commands}) %>
+				</div>
+			</div>
+		</div>
+		<div>
+			<button id="saveButton">Save</button>
+			<button id="cancelButton">Cancel</button>
+		</div>
+	</form>
+</div>

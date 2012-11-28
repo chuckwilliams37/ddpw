@@ -1,0 +1,21 @@
+<form id="commandDetailsForm"> 
+<% var j=0;%>
+	<div class="createTicketCommandContainer">
+
+		<div class="createTicketDetailsContainer" style="width:100%; height: 210px; margin-top:5px; overflow: scroll;">
+			<div style="margin:3px; 0 10px 0; padding-bottom: 8px;">
+				<div class="detailsHeader ui-widget-header" style="float:left; width:50%;">Property Names</div>
+				<div class="detailsHeader ui-widget-header" style="float:right; width:44%;">Value</div>		
+			</div>
+			
+			<% for (var k=0; k < this.i  ; k++) {%>
+				<%== $.View ( "./application/library/level3/ddpw/commands/views/detail_form_renderers/ctItem_container.ejs", { command: this.command, i:k,environmentVarList:this.environmentVarList } ) %>
+			<%}%>
+						</div>
+					
+	</div>
+	
+	<div class="addAnotherCommandOptionButton">
+		<button class="addAnotherCommandOption" style="float:right; position: absolute; bottom:48px; margin-left: 10px;"> + </button>
+	</div>
+</form> 

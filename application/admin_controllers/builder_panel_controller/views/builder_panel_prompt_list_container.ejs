@@ -1,0 +1,12 @@
+<% 
+if (typeof (this.prompts) != 'undefined' && this.prompts.length > 0) { 
+%>
+<ul class="builder-panel-prompt-list-container" >
+		<% for (var i=0; i < this.prompts.length ; i++ ) { 
+			var prompt = this.prompts[i];%>
+			<%== $.View('./application/admin_controllers/builder_panel_item_controller/views/builder_panel_prompt_item_container.ejs', prompt )%>
+		<%}%>
+</ul>
+<div class="clear both">&nbsp;</div>
+<%}else{%>
+<%}%>

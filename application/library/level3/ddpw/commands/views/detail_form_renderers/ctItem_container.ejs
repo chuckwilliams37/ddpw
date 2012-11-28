@@ -1,0 +1,54 @@
+<% 
+console.debug ("ctItem_container.this: " , this );
+%>
+			<div class="createTicketItemContainer" style="width: 100%; height:50px; margin:4px 0 4px 0;">		
+				<div class="createTicketPropertiesSelect" style="float:left; width:50%;">
+					<select name="ticketProperties[<%= this.i %>]" class="createTicketPropetiesName" style="width:120px;">
+					      <% 
+						      var selectedData = this.command.commandData;	
+						  	$.each(this.command.ticketModel, function(key,val) {
+						  	 if(typeof (val)	!= 'function' ){
+						  	 var hasEle=false;
+					  	  for(var ele in selectedData){ if(selectedData.hasOwnProperty(ele)){hasEle=true;
+					  	  }}
+						 %>										
+						 
+						 <option name="parame" value="<%= key %>"
+										<%= hasEle ? selectedData.formParams ?  selectedData.formParams.ticketProperties ? selectedData.formParams.ticketProperties[i] == key ? "selected" : "" : "" : "" : "" %> >
+								  	  	<%= key %>
+								  </option>
+						  <%
+						  	}});						  	
+						  %>								
+					</select>
+				</div>
+				<div id = "createTicketValues" class="createTicketValues" style="float:right; width:44%;">
+						<select id="ticketValueSource[<%= i %>]" name="ticketValueSource[<%= i %>]" 
+								class="selectTicketValues" style="width:120px;">						
+							<option value="UsersSelectedResponse" 
+							         <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketValueSource ? this.command.commandData.formParams.ticketValueSource[i] == "UsersSelectedResponse" ? "selected" : "" :"":"" : "" %> >
+							         UsersSelectedResponse</option>
+    				         <option value="EnvironmentVariable" 
+							         <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketValueSource ? this.command.commandData.formParams.ticketValueSource[i] == "EnvironmentVariable" ? "selected" : "" :"":"" : "" %> >
+							         EnvironmentVariable</option>							
+						    <option value="Custom"
+						            <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketValueSource ? this.command.commandData.formParams.ticketValueSource[i]  == "Custom" ? "selected" : "" :"":"" : "" %>>
+							       Custom</option>
+						</select>
+						<button class="remove-command-option" title="Remove Property" />
+						<div class="customValDiv" style="float:left;">	
+						      <input id="ticketCustomValue[<%= i %>]"  name="ticketCustomValue[<%= i %>]" type="text" class="customValue" style="width:100px;"
+						      value="<%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketCustomValue ? this.command.commandData.formParams.ticketCustomValue[ i ] ? this.command.commandData.formParams.ticketCustomValue[ i ] : '' : '':''  : "" %>"
+						      />
+							</div>	
+					
+					<div class="envVarListDiv">							
+							<select name="envProperties[<%= i %>]" id="envProperties[<%= i %>]" class="environmentVarList" style="width:100px;">
+							<% for (var k=0; k < this.environmentVarList.length ; k++) {%>
+								<option value="<%=this.environmentVarList[k]%>"  <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.envProperties ? this.command.commandData.formParams.envProperties[i]  == this.environmentVarList[k] ? "selected" : "" :"":"" : "" %>><%=this.environmentVarList[k]%></option>
+							<%}%>
+								</select>
+
+					</div>
+					</div>
+			</div>

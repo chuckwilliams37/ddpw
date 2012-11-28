@@ -1,0 +1,12 @@
+<div <%= Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.Tools.Controllers.BuilderPanelToolControllers.DatePicker %>>
+	<p><%= this.text %></p>		
+	<% 
+	var selectedResponse = this.attr("selectedResponse") //returns an array
+	,prompt = this;
+	this.responseOptions.each ( function (index, responseOption ) { 
+		%>
+		<div class="previewPanelItemResponseOptionContainer" <%= responseOption %>>
+			<input class="date_picker" type="text" value="<%= selectedResponse[0].value %>" title="VALUE: <%= selectedResponse[0].value %>"/>
+		</div>
+	<% }); %>
+</div>

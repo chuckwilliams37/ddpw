@@ -1,0 +1,102 @@
+
+ 		<link rel="stylesheet" href="/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/jquery-ui-base.css">
+		<link rel="stylesheet" href="/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/jquery-ui-customer-portal.css">
+		<link rel="stylesheet" href="/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/datatable.css">
+		<link rel="stylesheet" href="/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/widgets.css">
+		<link rel="stylesheet" href="/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/html.css">
+		<link rel="stylesheet" href="/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/uniform.default.css">
+		<link rel="stylesheet" href="/portalWeb/framework/skins/l3enabledportal_nov2008/css/IconMoonFont/stylesheet.css">
+		<link type="text/css" href="/portalWeb/framework/skins/l3enabledportal_nov2008/css/datatable.css" rel="stylesheet" />
+ 		<link type="text/css" href="./application/level3_ddpw_execution.css" rel="stylesheet" />
+		
+		<!--  JQUERY + plugins -->
+		<script type='text/javascript' src='./js/jquery-1.7.1.min.js'></script>
+		<script type='text/javascript' src='./js/jquery-ui-1.8.16.custom.min.js'></script>
+		<script type='text/javascript' src='./js/jquery.validate.min.js'></script>	
+		<script type='text/javascript' src='./js/jquery.dateFormat-1.0.js'></script>	
+		<script type='text/javascript' src='./js/jquery.ui.nestedSortable.js'></script>	
+		<script type="text/javascript" src="/portalWeb/framework/skins/l3enabledportal_nov2008/js/jQuery/jquery.dataTables.1.9.1.js"></script>
+<!--  	
+		<script type='text/javascript' src='../js/jquerymx-3.2.custom.min.js'></script>	
+		<script type='text/javascript' src='./js/jquery.jstree.js'></script>	
+ -->
+		<script type='text/javascript' src='./js/jquerymx-3.2.custom.js'></script>	
+		<script type='text/javascript' src='./js/_lib/jquery.hotkeys.js'></script>	
+		 
+		<!---  LOAD MODELS --->
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tool_factory.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/checkbox_group.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/radio_group.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/select.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/text_area.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/text_input.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/date_picker.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/multi_select_dgwf.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/add_attachments.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/models/section.js'></script>
+
+		
+		<script type='text/javascript' src='./application/models/prefill_data.js'></script>
+		<script type='text/javascript' src='./application/models/prompt_tree.js'></script>
+		<script type='text/javascript' src='./application/models/prompt.js'></script>	
+		<script type='text/javascript' src='./application/models/clarify_ticket_proxy.js'></script>
+		<script type='text/javascript' src='./application/models/classification.js'></script>
+		<script type='text/javascript' src='./application/models/response_option.js'></script>	
+		<script type='text/javascript' src='./application/models/level3_service.js'></script>	
+		<script type='text/javascript' src='./application/models/level3_invoice.js'></script>	
+		<script type='text/javascript' src='./application/models/userInformation.js'></script>
+		<script type='text/javascript' src='./application/models/environment_variables.js'></script>
+		
+		
+		
+		
+		<!-- LOAD TOOLFACTORY && COMMAND FACTORY-->
+		<script type='text/javascript' src='./application/library/level3/ddpw/commands/abstract_command.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/commands/exit_command.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/commands/create_ticket_command.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/commands/set_ticket_attributes_command.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/commands/set_environment_variable_command.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/commands/launch_command.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/commands/command_factory.js'></script>
+		
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/controllers/tool_controller.js'></script>	
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/controllers/properties_panel/multi_select_dgwf.js'></script>	
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/controllers/builder_panel_tool_controllers/date_picker.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/controllers/preview_panel/simple_dialog.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/controllers/execution_view/simple_dialog.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/controllers/execution_view/multi_select_dgwf.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/controllers/preview_panel/section.js'></script>
+		<script type='text/javascript' src='./application/library/level3/ddpw/utilities/tools/controllers/execution_view/section.js'></script>		
+		
+		<!---  LOAD CONTROLLERS --->
+		<script type='text/javascript' src='./application/execution_controllers/application_controller/application_controller.js'></script>
+		<script type='text/javascript' src='./application/admin_controllers/commands_dialog_controller/commands_dialog_controller.js'></script>
+		<script type='text/javascript' src='./application/admin_controllers/classification_preview_controller/classification_preview_controller.js'></script>
+		<script type='text/javascript' src='./application/admin_controllers/application_controller/application_controller.js'></script>
+		<script type='text/javascript' src='./application/execution_controllers/prompt_item_controller/prompt_item_controller.js'></script>
+		<script type='text/javascript' src='./application/execution_controllers/command_controller/command_controller.js'></script>
+		<script type='text/javascript' src='./application/execution_controllers/validation_controller/validation_controller.js'></script>
+		<script type='text/javascript' src='./application/execution_controllers/execution_view_item_controller/execution_view_item_controller.js'></script>		
+
+		<!--   
+			<script type='text/javascript' src='./application/execution_controllers/.../....js'></script>	
+		--->
+<!--  LOAD FIXTURES 
+		<script type='text/javascript' src='fixtures/fixtures.js'></script>
+		<-->
+	
+		
+		<script>
+			$(document).ready(function() {
+			   //workaround for console failure
+			   if ( typeof (console.debug) == 'undefined') {
+			   		console.debug = function () {};
+			   } else {
+			   		console.debug ("CONSOLE FUNCTIONAL~!!");
+			   }
+			   new Level3_ddpw_execution.Controllers.ApplicationController($("#ddpw_main"));
+			});
+		</script>
+     <div >
+		<div id="ddpw_main" > </div>
+     </div>

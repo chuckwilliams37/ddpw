@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<user>
+	<domain>LEVEL3</domain>
+	<username>EBPP-ALL</username>
+	<permissions>
+		<permission>L3PP Repair Contacts</permission>
+		<permission>L3PP Managed Colo Services</permission>
+		<permission>L3PP VPLS Reports</permission>
+		<permission>L3PP Product ELS</permission>
+		<permission>OneStop Toll Free Dedicated</permission>
+		<permission>L3PP Billing Regular User</permission>
+		<permission>L3PP VT Reports</permission>
+		<permission>L3PP ManagedModem ViewOnly</permission>
+		<permission>OneStop 1 Plus Switched</permission>
+		<permission>L3PP MyServices</permission>
+		<permission>L3PP IPVPN Reports</permission>
+		<permission>L3PP Billing Payments</permission>
+		<permission>OneStop DAL</permission>
+		<permission>L3PP Port Triggering</permission>
+		<permission>L3PP MPB Report</permission>
+		<permission>L3PP Billing Cost Alloc</permission>
+		<permission>L3PP Managed Router-Presidio</permission>
+		<permission>L3PP Cross Connect</permission>
+		<permission>L3PP Quote To Order</permission>
+		<permission>L3PP SSAdmin</permission>
+		<permission>L3PP Financials</permission>
+		<permission>L3PP Product LI</permission>
+		<permission>Billing Invoice</permission>
+		<permission>L3PP DIA Reports</permission>
+		<permission>L3PP Billing Manage Users</permission>
+		<permission>L3PP Billing Request</permission>
+		<permission>L3PP Access</permission>
+		<permission>L3PP HSIP Reports</permission>
+		<permission>L3PP Enhanced Toll Free</permission>
+		<permission>L3PP Orders</permission>
+		<permission>L3PP Spam Virus Protection</permission>
+		<permission>L3PP Converged Services</permission>
+		<permission>L3PP SSAdmin Create Ticket</permission>
+		<permission>L3PP Mimic BusOrg</permission>
+		<permission>L3PP Managed Router-Telindus</permission>
+		<permission>L3PP View All Quotes</permission>
+		<permission>L3PP Reseller Pricing</permission>
+		<permission>L3PP OnMap Report</permission>
+		<permission>L3PP SSAdmin Ticket Admin</permission>
+		<permission>OneStop Toll Free Switched</permission>
+	</permissions>
+</user>

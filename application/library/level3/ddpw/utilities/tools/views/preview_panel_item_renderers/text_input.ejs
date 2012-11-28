@@ -1,0 +1,16 @@
+<div>
+	<p><%= this.text %></p>
+		<% var selectedResponse = this.getSelectedResponse() ? this.getSelectedResponse()[0] : this.getDefaultResponse()[0],
+			outputFunction = function (index, responseOption ) { %>
+					<div class="previewPanelItemResponseOptionContainer" <%= responseOption %>>
+						<input class="required" type="text" value="<%= selectedResponse.value %>" /> <br />
+					</div>
+			<% 
+			}; 
+			if ( typeof ( this.responseOptions.each ) != 'undefined' ) {
+				this.responseOptions.each ( outputFunction );
+			} else {
+				$.each ( this.responseOptions , outputFunction );
+			}
+		%>
+</div>

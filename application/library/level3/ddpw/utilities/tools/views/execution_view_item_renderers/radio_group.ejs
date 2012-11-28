@@ -1,0 +1,25 @@
+<div>
+	<% var selectedResponse = this.attr("selectedResponse"),
+			prompt = this;
+	; %>
+
+	<p><%= this.text %></p>
+	<% 
+		this.responseOptions.each ( function (index, responseOption ) {
+		%>
+		<div class="previewPanelItemResponseOptionContainer" <%= responseOption %> >
+			<input id="<%=this.identity()%>" name="<%=prompt.identity()%>_radio_group" type="radio" value="<%= responseOption.value %>" 
+				<% if ( responseOption.isSelected () ) { %>
+						checked="true"
+				<%}%>
+			/>
+			<%= responseOption.label %> <br/>
+		</div>
+	<% }); %>
+</div>
+
+
+
+
+
+			

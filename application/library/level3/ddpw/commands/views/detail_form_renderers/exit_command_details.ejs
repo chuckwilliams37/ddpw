@@ -1,0 +1,23 @@
+<form id="commandDetailsForm"> 
+	<div>
+		On Exit Navigate to: <br />
+		<select name="exitUrlOption">	
+			<option value="ticketSummaryScreen"
+				<%= this.command.commandData.exitUrlOption == "ticketSummaryScreen" ? "selected" : "" %>
+			>View Ticket Summary Screen</option>
+			<option value="custom"
+				<%= this.command.commandData.exitUrlOption == "custom" ? "selected" : "" %>			
+			>Custom URL: </option>
+		</select>
+		<input name="exitUrl" type="text" value="<%= this.command.commandData.exitUrl ? this.command.commandData.exitUrl : null %>"/>
+	</div>
+	<div>
+		<input name="displayExitMessage" type="checkbox" value="true" <%= this.command.commandData.displayExitMessage ? ( this.command.commandData.displayExitMessage == "true" ? "checked" : "") : "" %> /> Include Exit Message
+		<div class="exitMessageDetailsContainer">
+			Title: <br/>
+			<input name="exitMessageTitle" type="text" value="<%= this.command.commandData.exitMessageTitle ? this.command.commandData.exitMessageTitle : null %>" /> <br/>
+			Message: <br/>
+			<textarea cols="40" rows="8" name="exitMessage"><%= this.command.commandData.exitMessage ? this.command.commandData.exitMessage : "" %></textarea>
+		</div>
+	</div>
+</form> 

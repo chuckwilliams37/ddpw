@@ -1,0 +1,49 @@
+<div id="propertiesPanelPrompt">
+	<form <%=this.selectedModel %>>
+		<div>
+			<label for="name">Title</label>
+			<input type="text" name="name" id="name" value="<%= this.selectedModel.name %>"/>
+		</div>
+		<div>
+			<label for="description" >Description</label>
+			<input type="text" name="description" id="description" value="<%= this.selectedModel.description %>"/>
+		</div>
+		<div>
+			<label for="alwaysEffective" title="This option will activate this tree. When saved, users will begin to see this tree for the '<%= this.selectedModel.domain %>' domain.">Currently LIVE?:</label>
+			<input name="alwaysEffective" id="alwaysEffective" type="checkbox" value="checked" <%= this.selectedModel.isAlwaysEffective == true ? 'checked' : '' %> />
+			</div>
+		<div>
+			<label for="effectiveDate">From</label>
+			<input type="text" id="effectiveDate" name="effectiveDate" value="<%= this.selectedModel.effectiveDate ? $.format.date(this.selectedModel.effectiveDate, "MM/dd/yyyy") :'' %>"/>
+		</div>
+		<div>
+			<label for="expirationDate">to</label>
+			<input type="text" id="expirationDate" name="expirationDate" value="<%= this.selectedModel.expirationDate ? $.format.date(this.selectedModel.expirationDate, "MM/dd/yyyy") :'' %>"/>
+		</div>
+		<div>
+			<button id="saveButton">Save</button>
+			<button id="cancelButton">Cancel</button>
+		</div>
+	</form>
+	
+	<script>
+	$(function() {
+		$("#domain").val("<%= domain %>");
+		
+		var dates = $( "#effectiveDate, #expirationDate" ).datepicker({
+			defaultDate: "+1M",
+			changeMonth: true,
+			numberOfMonths: 3,
+			onSelect: function( selectedDate ) {
+				var option = $(this).attr("id") == "effectiveDate" ? "minDate" : "maxDate",
+					instance = $( this ).data( "datepicker" ),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings );
+				dates.not( this ).datepicker( "option", option, date );
+			}
+		});
+	});
+	</script>
+</div>

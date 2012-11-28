@@ -1,0 +1,118 @@
+$(document).ready(function() {
+
+/**
+ * @class Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.Tools.Controllers.PreviewPanel.Section
+ */
+$.Controller('Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.Tools.Controllers.PreviewPanel.Section',
+	/** @Static */
+	{
+		defaults : {
+			toolType : null,
+			prompt : null
+		}
+	},
+	/** @Prototype */
+	{
+		init : function ( element, options ){
+			console.debug (this.Class.shortName +".init()");
+			$(".promptActions").hide();
+			
+			this.enableSectionActions ( !this.isSectionComplete() );
+			
+			/*
+			this.options.prompt.prompts.each ( $.proxy ( function ( index , prompt ) {
+					prompt.bind ( "selectedResponse" , $.proxy ( this.onSelectedResponseChange , this ) );
+				} , this  )
+			)
+			*/
+			
+		},
+		".section_actions click" : function ( element, event ) {
+			console.debug ( "Section Submit");
+			event.stopPropagation();
+			event.stopImmediatePropagation();
+			event.preventDefault();
+			
+			this.saveSectionSelections( event );
+			
+			console.debug ("***************************************tree" , $("#main").controller().options.selectedTree);
+			
+			if ( this.isSectionComplete() ) {
+				this.triggerSectionSelectedEvent()
+			} else {
+				this.triggerSectionIncompleteEvent();
+			}
+			
+		},
+		isSectionComplete : function () {
+			var promptsWithSelections = this.options.prompt.prompts.grep ( function ( prompt , index ){ return prompt.hasSelectedResponse() } );
+			return promptsWithSelections.length ==  this.options.prompt.prompts.length;
+		},
+		enableSectionActions : function ( isEnabled ) {
+			if ( isEnabled ) {
+				$( ".section_actions", this.element).show();
+				$( ".section_actions button" , this.element ).button();
+			} else {
+				$( ".section_actions", this.element).hide();
+			}
+		},
+		getAllPromptControllers : function () {
+			var sectionPromptControllers = $(".prompt", this.element).controllers();
+			return sectionPromptControllers;
+		},
+		saveSectionSelections : function ( event ) {
+			var sectionPromptControllers = this.getAllPromptControllers(),
+				cursor = $("#previewPanel").controller().options.selectedTree.createCursor(),
+				sectionPromptIds = $.map ( sectionPromptControllers , ( function ( promptController , index ) {
+					return promptController.options.itemModel.identity();
+				}));
+				
+				$.each ( sectionPromptControllers , function ( index , promptController ) {
+					var value = promptController.getUiResponse( event ); //returns an array 
+					//if ( promptController.validate( value ) ) { //not functioning at this time
+						var promptModel = $("."+promptController.options.itemModel.identity()).model()
+						promptModel.attr ( "selectedResponse" , value );
+					//}
+				});
+		},
+		triggerSectionSelectedEvent : function (){
+			var sectionPromptControllers = this.getAllPromptControllers(),
+				sectionSelectedEvent = $.Event ( "sectionSelected", { sectionPromptControllers : sectionPromptControllers } );
+				
+			console.debug ("sectionPromptControllers: " , sectionPromptControllers );
+			this.element.trigger ( sectionSelectedEvent );
+		},
+		triggerSectionIncompleteEvent : function () {
+			var sectionIncompleteEvent = $.Event ("sectionIncomplete"),
+				sectionPromptControllers = this.getAllPromptControllers();
+
+			$.each ( sectionPromptControllers , function ( index , promptController ) {
+				var value = promptController.getUiResponse( event ); //returns an array - choose 
+				if ( ! promptController.options.itemModel.hasSelectedResponse() ) {
+					promptController.element.switchClass ("","ui-state-error",125);
+				}
+			});
+		},
+		onSelectedResponseChange : function () {
+			console.debug ("selectedResponse Changed within section", arguments );
+			
+			if ( this.isSectionComplete() ) {
+				this.triggerSectionSelectedEvent();
+			} else {
+				this.enableSectionActions ( !this.isSectionComplete() );
+			}
+			
+		},
+		"destroy" : function () {
+			console.debug ( "destroy section: " , arguments );
+			/*
+			this.options.prompt.prompts.each ( $.proxy ( function ( index , prompt ) {
+					prompt.unbind ( "selectedResponse" , $.proxy ( this.onSelectedResponseChange , this ) );
+				} , this  )
+			)
+			*/
+		}
+		
+	}
+);
+});

@@ -1,0 +1,15 @@
+<div>
+	<p><%= this.text %></p>
+	<div class="buttonOptionsContainer" >
+	<% 
+		this.responseOptions.each ( function (index, responseOption ) {
+		%>
+		<div class="builderPanelItemResponseOptionContainer" <%= responseOption %> >
+			<button value="<%= responseOption.value %>" class="ui-state-disabled" >
+				<%= responseOption.label %> 
+			</button>
+			<%== $.View('./application/admin_controllers/builder_panel_controller/views/builder_panel_prompt_list_container.ejs', responseOption )%>
+		</div>
+	<% }); %>
+	</div>
+</div>	

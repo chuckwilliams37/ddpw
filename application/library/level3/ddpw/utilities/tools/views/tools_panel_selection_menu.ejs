@@ -1,0 +1,10 @@
+<ul>
+	<%
+		var getToolItemRenderer = Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.getToolItemRenderer;
+	%>
+	<% for (i = 0; i < toolTypes.length; i++) {%>
+		<li <%= plugin('level3_ddpw_administration_library_level3_ddpw_utilities_tools_tool', { toolType: toolTypes[i] }) %> > 
+			<%== $.View (getToolItemRenderer(toolTypes[i], "tools_panel"),{}) %>
+		</li>
+	<% } %>
+</ul>

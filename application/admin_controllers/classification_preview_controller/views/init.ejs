@@ -1,0 +1,28 @@
+<div id="classificationContainer" class="ui-widget " >
+	<div id="classificationComponents" >
+			<div class="ui-widget ui-widget-header" >
+				<div>Mimic:</div>
+				<form id="classificationSelectionsForm">
+					<div id="busOrgInputContainer" class="ui-widget " >
+						<label for="busOrgSelection"> BusOrg: </label>
+						<input type="text" value="1-EWZMX" name="busOrgSelection" id="busOrgSelection"/>	
+					</div>
+					<div id="classificationsSelectionContainer">
+						<div> Classifications: </div>
+						<% for ( groupKey in classificationGroupNames )  { %>
+							<%== $.View ("./application/admin_controllers/classification_preview_controller/views/group_container.ejs", 
+								{
+								groupName: this.classificationGroupNames[groupKey],
+								key : groupKey,
+								classificationGroupNames: this.classificationGroupNames, 
+								classificationNames : this.classificationNames,
+								selectedClassifications : this.selectedClassifications }) %>
+						<%}%>
+					</div>
+				</form>
+			
+				<div class="clear both">&nbsp;</div>
+			</div>
+	</div>
+	<div class="clear both" />
+</div>

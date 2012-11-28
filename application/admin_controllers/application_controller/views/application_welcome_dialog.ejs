@@ -1,0 +1,17 @@
+<div id="welcomeDialog" class="ui-widget ui-widget-content applicationContainer ui-tabs ui-corner-all">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+		Get Started
+	</div>
+	<div id="welcomeDialogLeft">
+		
+	</div>
+	<div id="welcomeDialogRight">
+		<div>Open a Recent Question Tree</div>
+		<ul id="prompt_trees_welcome_panel">
+			<%for(var i = 0; i < this.length ; i++){%>
+				<%== $.View('./application/admin_controllers/prompt_tree_controller/views/prompt_tree_item_renderer.ejs', this[i] )%>
+			<%}%>
+		</ul>
+	</div>
+	<div class="clear">&nbsp;</div>
+</div>

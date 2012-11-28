@@ -1,0 +1,28 @@
+<div class="ui-widget ui-widget-default" >
+	<div id="outlinePanelTreeTitle" class="ui-widget-header">
+		<%= this.selectedTree.name %>
+	</div>
+	<div id="outlinePanelTreeDescription" class="ui-widget-content">
+		<%= this.selectedTree.description %>
+	</div>
+	<hr />
+</div>
+
+<div id="outlineClassificationContainer" class="ui-widget " >
+	<div id="outlineClassificationEnableDisable" >
+			<label for="enableFilters">Enable Filters</label>
+			<input name="enableFilters" id="enableFilters" class="outline-classification-checkbox"  type="checkbox" value="true"
+				<%= this.enableFilters ? "checked='true'" : "" %>
+			/>
+	</div>
+	<div id="outlineClassificationSelectionContainer" >
+		<p> Filter by: </p>
+		<form id="outlineClassificationSelectionsForm">
+	    
+	    </form>
+	</div>
+</div>
+	
+<div id="outlinePanelTreeContainer" class="ui-widget " <%= this.selectedTree %> >
+	<p> Generating Tree View... </p>
+</div>

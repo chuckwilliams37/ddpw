@@ -1,0 +1,16 @@
+<div 
+<%= plugin("level3_ddpw_administration_library_level3_ddpw_utilities_tools_preview_panel_multi_select_data_grid_with_filter", 
+			{ prompt: this }) %> >
+	<p><%= this.text %></p>
+	<% this.responseOptions.each ( function (index, responseOption ) { 
+		%>
+		<div class="builderPanelItemResponseOptionContainer" <%= responseOption %>>
+			<div class="multiSelectDataGridContainer" >
+				<table cellpadding="1" cellspacing="1" class="multiSelectDataGridTable" >
+					
+				</table>
+			</div>
+			<%== $.View('./application/admin_controllers/builder_panel_controller/views/builder_panel_prompt_list_container.ejs', responseOption )%>
+		</div>
+	<% }); %>
+</div>

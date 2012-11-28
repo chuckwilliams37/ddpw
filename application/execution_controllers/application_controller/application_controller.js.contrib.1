@@ -1,0 +1,362 @@
+$(document).ready(function() {
+/**
+ * @class Level3_ddpw_execution.Controllers.ApplicationController
+ */
+$.Controller('Level3_ddpw_execution.Controllers.ApplicationController',
+/** @Static */
+{
+	defaults : {
+		 currentTree: null
+		,model: Level3_ddpw_administration.Models.PromptTree
+		,domain : ""
+		,classifications : []
+		,selectedClassifications: {
+			segment : ["Unknown/Undefined"],
+			product : ["Unknown/Undefined"],
+			bandwidth : ["Unknown/Undefined"]
+		}
+		,classificationGroups:[]
+		,classificationHierarchy:[]
+		,cursor : null
+		,readyStatus : []
+		,readyStatusCheck : [
+			"classificationExecutionViewReady",
+			"executionViewIsReady",
+			"onGetClassificationsComplete"
+		]
+		,userInfo : null
+	},
+	listensTo : ["classificationExecutionViewReady","responseSelected","executionViewIsReady","readyComplete"
+		//,"debug" //comment to switch on/off debug messages in the execution view
+		]
+	
+},
+/** @Prototype */
+{ 
+	init : function(){
+		
+		this.setDefaultVariables();
+		this.element.html ( 
+			$.View ( "/portalWeb/portlets/partner/common/dataDrivenPromptWorkflow/application/execution_controllers/application_controller/views/init.ejs" )
+		);
+		var $thisController = this;
+		
+		this.getUserInfo().then(
+			function () {
+				$thisController.getAllExecutionClassifications().then(
+					$thisController.getClassificationsByServiceId, 
+						$thisController.retrieveAndSetTree
+					)
+			}
+		);
+		/*
+		var debugEvent = $.Event("debug",{message: "Application Start"});
+		this.element.trigger (debugEvent);
+		*/
+		
+		//console.debug ("options: " , JSON.stringify( this.options ));
+	},
+	"debug" : function ( element, event ){
+		/************************************************************
+		* Usage : 
+		var debugEvent = $.Event("debug",{message: "Application Start"});
+		this.element.trigger (debugEvent);
+		**************************************************************/
+		
+		
+		var debugLog = $("#debugLog").length == 0 ? $("<div id='debugLog' />"):  $("#debugLog");
+		debugLog.append ( event.message ).dialog({
+			modal:false,
+			left: 600,
+			width: 400
+		});
+		
+	},
+	readyCheck : function ( readyPoint ) {
+		/*
+		var debugEvent = $.Event("debug",{message: "<br/>readyCheck()"});
+		this.element.trigger (debugEvent);
+		*/
+		if ( $.inArray ( readyPoint , this.options.readyStatus ) == -1 ) {
+			this.options.readyStatus.push ( readyPoint );
+		}
+		var readyTargetCount = this.options.readyStatusCheck.length,
+		readyCount = this.options.readyStatus.length,
+		isReady = readyTargetCount == readyCount;
+		
+		if (isReady) {
+			var readyEvent = $.Event ( "readyComplete" );
+			this.element.trigger (readyEvent);
+		} 
+	},
+	setDefaultVariables : function () {
+		this.options.domain = this.getDomain();
+		this.options.classifications = this.getClassifications();
+	},
+	getDomain : function () {
+		return  "Ticketing";
+	},
+	getClassifications : function () {
+		return [];
+	},
+	scrollToElement : function (targetElement) {
+		if ( targetElement.position( this.element ) ) {
+			var scrollToPosition = targetElement.position().top*1.5;	
+			$(this.element).animate({scrollTop: scrollToPosition},500,"easeOutExpo");
+		} else {
+			//first element 
+			$(this.element).animate({scrollTop: 0},500,"easeOutExpo");
+		}
+	},
+	//check the rest service code      
+	getClassificationsByServiceId : function () {
+	/*
+		var debugEvent = $.Event("debug",{message: "<br/>getClassificationsByServiceId"});
+		this.element.trigger (debugEvent);
+		*/
+		var onSuccess = function (data, textStatus, jqXHR) {
+				var $applicationExecutionController = $("#ddpw_main").controller();
+				var selectedClassifications = $applicationExecutionController.options.selectedClassifications;
+				
+				$.each ( $applicationExecutionController.options.selectedClassifications , function ( index, value ) {
+					$applicationExecutionController.options.selectedClassifications[index] = [];
+				});
+				
+				$("TroubleTicketClassification", data).children().each( function (index, element) {
+					var classificationText = element.textContent ? element.textContent : element.text ? element.text :  "Unknown/Undefined" ;
+					selectedClassifications[$.String.underscore(element.nodeName)].push( classificationText );
+  				});
+  				/*
+  				var debugEvent = $.Event("debug",{message: "<br />getClassificationsByServiceId.onSuccess()<br/>classificationExecutionViewReady"});
+				$applicationExecutionController.element.trigger (debugEvent);
+				*/
+				$applicationExecutionController.element.trigger( "classificationExecutionViewReady" );
+  		};
+  			
+		return Level3_ddpw_administration.Models.Classification.findByServiceId( 
+				{
+					domain : parameters.domain,
+					serviceId : parameters.serviceId 
+				}, 
+			onSuccess );
+			
+	},	
+	//check the rest service code 
+	getAllExecutionClassifications : function () {	
+		/*
+		var debugEvent = $.Event("debug",{message: "<br/>getAllExecutionClassifications"});
+		this.element.trigger (debugEvent);
+		*/
+		return Level3_ddpw_administration.Models.Classification.findAll( {domain : parameters.domain }, this.onGetClassificationsComplete );
+	},	
+	onGetClassificationsComplete : function(data, textStatus, jqXHR){
+		/*
+		var debugEvent = $.Event("debug",{message: "<br/>onGetClassificationsComplete"});
+		//console.debug ("onGetClassificationsComplete " , arguments);
+		$applicationExecutionController.element.trigger (debugEvent);
+   		*/
+   		var $applicationExecutionController = $("#ddpw_main").controller();
+  		$applicationExecutionController.options.classificationHierarchy = Level3_ddpw_administration.Models.Classification.getClassificationHierarchy();
+  		$applicationExecutionController.options.classificationGroups = Level3_ddpw_administration.Models.Classification.getClassificationGroupNames();
+  		$applicationExecutionController.readyCheck ( "onGetClassificationsComplete" );
+
+  	}, 	
+	retrieveAndSetTree : function ( ) {
+		return this.options.model.findActive({domain:parameters.domain}).then (		
+			function ( data ) {
+				var $applicationExecutionController = $("#ddpw_main").controller();
+				/*
+				var debugEvent = $.Event("debug",{message: "<br/>this.options.model.findActive.then()"});
+				$applicationExecutionController.element.trigger (debugEvent);
+				*/
+				var	rawTreeData = 	data.level3Response.PromptTree[0];
+				var unescapedJSON = unescape( rawTreeData.XMLDocument.replace(/\+/g, " ") );
+				var treeDataObj = eval("(promptTreeObj=" + unescapedJSON + ")");
+				if (String(rawTreeData.PromptTreeID) != String (treeDataObj.id))
+		    		{
+		    			treeDataObj.id = rawTreeData.PromptTreeID;
+		    		}
+		    		if((effStringDate = treeDataObj.effectiveDate) != null) {
+			    		treeDataObj.effectiveDate = new Date(effStringDate);
+		    		}
+		    		if((expStringDate = treeDataObj.expirationDate) != null) {
+			    		treeDataObj.expirationDate = new Date(expStringDate);			    		
+		    		}
+				$applicationExecutionController.options.currentTree = new Level3_ddpw_administration.Models.PromptTree ( treeDataObj ); 
+				$applicationExecutionController.element.trigger( "executionViewIsReady" );                 
+			}
+		);
+		
+	},
+	"classificationExecutionViewReady" : function ( element, event ) {
+		this.readyCheck ( event.type );
+	},
+	"executionViewIsReady" : function ( element, event ) {
+		/*
+		var debugEvent = $.Event("debug",{message: "<br/>executionViewIsReady()"});
+		this.element.trigger (debugEvent);
+		*/
+		this.options.currentTree.clearPromptSelections ( );
+		this.readyCheck ( event.type );
+		//this.refresh();
+	},
+	"readyComplete" : function  ( element, event ) { 
+		/*
+		var debugEvent = $.Event("debug",{message: "<br/>readyComplete()"});
+		this.element.trigger (debugEvent);
+		*/
+		this.refresh();
+	}, 
+	"responseSelected" : function ( element, event ) {
+		this.options.currentTree.clearPromptSelections (  $(event.target).model().identity() );
+		//let's consider adding necessary command inline processing here.
+		
+		//then let's set prompt defaults from prefillData
+		this.refresh()
+	},
+	refresh : function () {
+			///we need to process environment variable commands encountered so far here.
+			var $applicationExecutionController = $("#ddpw_main").controller();
+			var interviewCompleteFlag = false;
+			/*
+			var debugEvent = $.Event("debug",{message: "<br/>refresh()"});
+			$applicationExecutionController.element.trigger (debugEvent);
+			*/
+			if (  typeof ($applicationExecutionController) !='undefined' )  {
+				var	prompts = [],
+					paramsObj = {
+			        		classifications : $applicationExecutionController.options.selectedClassifications,
+			        		classificationGroups : $applicationExecutionController.options.classificationGroups,
+			        		classificationHierarchy : $applicationExecutionController.options.classificationHierarchy
+			        	},
+					initialFilters = ["prompts","hasSelections","classifications"],
+			          cursor = $applicationExecutionController.options.cursor = $applicationExecutionController.options.cursor ? 
+			        	  $applicationExecutionController.options.cursor.setFilters( initialFilters , paramsObj) : 
+			         	$applicationExecutionController.options.currentTree.createCursor( initialFilters ,paramsObj ),
+					instance = cursor.getInstance();
+					cursor.moveTo ("start");
+				//get all prompts that have selections made
+				do {
+					//console.debug ( "INSTANCE:", this.options.cursor.instance );
+					try {
+						instance = cursor.getInstance();
+						if (instance) {
+							//console.debug ("adding " + instance.text + " to display list");
+							prompts.push ( instance );
+						}
+					} catch (e) {
+						//console.warn ("ERROR!!!!", e); 
+					}
+				} while ( cursor.next() );
+				
+				
+				//then get the next unselected
+				var nextItemFilters = ["prompts","classifications","isReadyForDisplay"];
+				
+				if (prompts.length > 0) {
+					cursor.moveTo ( prompts[prompts.length-1].identity() );
+				} else {
+					cursor.moveTo ("start");
+				}
+				
+				cursor.setFilters ( nextItemFilters , paramsObj ).next();
+				instance = cursor.getInstance();
+				
+				if ( instance ) {
+					//console.debug ("adding " + instance.text + " to display list");
+				/*$.each ( instance.prefillData , function ( index, prefill ) {					
+					if (prefill.prefillType == "Custom"){
+						instance.responseOptions[0].value = prefill.prefillValue;
+					}
+				});*/
+						//complete this for using responseOptions - when response option values have been set by admin (checkbox, radio, simpledialo
+						/*****
+						
+						
+						var valuesArray = instance.prefillData.map ( function ( prefillDataObj, index ) {
+							//this logic should return actual prefill (default) value
+							return prefillDataObj.prefillType;
+						});
+						
+						var newResponseOptions = instance.responseOptions.grep ( function ( responseOption, index ) {
+							return $.inArray ( responseOption.value , valuesArray ) >= 0
+						});
+						
+						//use this in all cases
+						instance.attr ("defaultResponse" , newResponseOptions); //newResponseOptions should be a list
+						
+						*******/
+						
+					}
+					prompts.push ( instance );
+				} else {
+					interviewCompleteFlag = true;
+					//we've hit the end!
+					
+					//alert ( "END");			
+				}
+				
+				var renderedView = $.View("/portalWeb/portlets/partner/common/dataDrivenPromptWorkflow/application/execution_controllers/application_controller/views/execution_container.ejs",
+					{
+						selectedClassifications: $applicationExecutionController.options.selectedClassifications, 
+						prompts:prompts,
+						treeName : $applicationExecutionController.options.currentTree.name,
+						tree : $applicationExecutionController.options.currentTree
+					}
+				);
+								
+				$applicationExecutionController.element.html(renderedView);
+				
+				if ( instance ) {
+					var debugEvent = $.Event("debug",{message: "$applicationExecutionController.scrollToElement ( " + instance.identity() +") );"});
+					$applicationExecutionController.element.trigger (debugEvent);
+					$applicationExecutionController.scrollToElement ( instance.elements( $applicationExecutionController.element ) );
+				} else {
+					$applicationExecutionController.scrollToElement ( $("li", this.element).filter(":last") );				
+				}
+				
+				if ( interviewCompleteFlag ) {	
+					$applicationExecutionController.displayCompleteMessage();
+					var completeEvent = $.Event("interviewComplete", { tree : cursor.tree } ) ;
+					$("body").trigger ( completeEvent );				
+				}
+				
+			} 
+	},
+	displayCompleteMessage : function () {
+		var completeMessage = "You have completed the interview.",
+		completeDialog = $("<div>"+completeMessage+"</div>").dialog (
+			{
+				title : "Interview Complete",
+				modal : true,
+				buttons : {
+					"OK" : function () {
+						$ ( this ).dialog ( "destroy" );
+					}
+				}
+			}
+		);
+		
+	},
+	setResponseSelected : function ( value ) {
+		console.debug (this.Class.shortName + ".setResponseSelected()");
+		this.options.itemModel.attr( "selectedResponse", this.getUiResponse( value ) );
+	},
+	getUiResponse : Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.promptModelGetUiSelectionsFunction,
+	getUserInfo : function (){
+		return Level3_ddpw_administration.Models.UserInformation.getUserInfo(this.onUserInformationComplete)
+	},
+	onUserInformationComplete : function(obj, textStatus, jqXHR){
+				var userInfo= {};
+				    // fill the data model for feedback form
+ 					userInfo.portalUserName = obj.lastName+" "+obj.firstName;					
+					// fill data model for incorrect data form
+					userInfo.portalUserEmail = obj.email;
+					userInfo.portalUserPhone  = obj.phone;			
+					Level3_ddpw_administration.Models.UserInformation.userInfo		 = userInfo ; 		
+					var $applicationExecutionController = $("#ddpw_main").controller();
+		  		$applicationExecutionController.options.userInfo = Level3_ddpw_administration.Models.UserInformation.userInfo;  			
+  	}	
+}
+	);
+});

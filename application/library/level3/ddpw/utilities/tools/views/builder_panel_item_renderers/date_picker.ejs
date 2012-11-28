@@ -1,0 +1,11 @@
+<div <%= Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.Tools.Controllers.BuilderPanelToolControllers.DatePicker %>>
+	<p><%= this.text %></p>		
+	<% this.responseOptions.each ( function (index, responseOption ) { 
+		
+		%>
+		<div class="builderPanelItemResponseOptionContainer" <%= responseOption %>>
+			<input class="date_picker" type="text" value="<%= responseOption.value %>" title="VALUE: <%= responseOption.value %>" disabled="true" />
+			<%== $.View('./application/admin_controllers/builder_panel_controller/views/builder_panel_prompt_list_container.ejs', responseOption )%>
+		</div>
+	<% }); %>
+</div>

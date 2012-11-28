@@ -1,0 +1,721 @@
+body {
+	width:962px;
+	margin:0 auto;
+	position:relative;
+	font-family: "trebuchet","verdana","tahoma";
+	font-size:.8em;
+}
+
+ul{
+	padding:0 0 0 0px; 
+	list-style : none;
+}
+
+.clear {
+	clear:both;
+}
+
+.hidden {
+		display:none;
+}
+
+
+.toolTip {
+	display:none;
+	float:left;
+	position:absolute;
+	left: 5px;
+	top: 32px;
+	z-index: 1;
+}
+
+
+#main {
+	background-color:#ebebe3;
+	border:1px solid #666666;
+}
+
+#main li{
+	
+}
+
+#left_panel_container, #center_panel_container, #right_panel_container {
+	float:left;	
+	margin:1px;
+}
+
+
+#left_panel_container {
+	width:245px;
+}
+#center_panel_container {
+	width:520px;
+}
+#right_panel_container {
+	width:170px;
+	max-height:550px;
+	overflow:hidden;
+}	
+
+#welcomeDialogLeft, #welcomeDialogRight {
+	float:left;
+	width:200px;
+	margin:5px;
+	padding:10px;
+}
+
+#welcomeDialogRight {
+	border-left:1px solid #999999;
+}
+
+
+
+/*********************************** Prompt Trees Controls*********************************************************/
+
+#prompt_trees {
+        margin: 0px;
+	height:300px;
+	overflow:scroll;
+	width: 100%;
+	}
+.is-in-effect {
+    float:left;
+    margin: 0px 0px;
+    position : absolute;
+    left :0px;
+    top: 0px;
+}
+
+.prompt-tree-controls {
+	padding: 5px;
+	margin: 0px;
+	background-color: #efefef;
+	border-bottom: 1px solid #666666;
+}
+
+.prompt-tree-controls button{
+	font-size: 10px;
+	padding: 0px;
+	margin: 5px;
+	width: 65px;
+}
+
+.level3_ddpw_administration_prompt_tree_item {
+    font-size:9px;
+    border:1px outset;
+    margin: 2px;
+    width:97%;
+    text-align:left;
+    vertical-align: middle;
+    height: 35px;
+}
+.level3_ddpw_administration_prompt_tree_item .destroy {
+    float:right;
+    margin:1px;
+    padding : 0px;
+    position: absolute;
+    top:0px;
+    right:0px;
+    height: 15px;
+    width: 15px;
+}
+.level3_ddpw_administration_prompt_tree_item .button_label {
+    margin: 0px 24px 0px 10px;
+}
+/*********************************** Builder Panel *********************************************************/
+#builderPanel {
+	overflow:none;
+	height:500px;
+}
+
+#builderPanelTreeContainer {
+	position:relative;
+}
+
+#builderPanelTreeTitle {
+	cursor: pointer;
+	}
+
+#builderPanelTreeContainer > ul.builder-panel-prompt-list-container{
+	min-height: 0px;
+	padding: 0px;
+	height: 430px;
+	height: 430px;
+	overflow: scroll;
+}
+.level3_ddpw_administration_builder_panel_item{
+	margin: 5px 5px 5px 35px;
+	cursor: pointer;
+	width: 375px;
+}
+.level3_ddpw_administration_builder_panel_item{
+	margin: 5px 5px 5px 20px;
+	cursor: pointer;
+}
+
+.multiSelectDataGridContainer .dataTables_wrapper {
+		min-height: 0px;
+	}
+
+.level3_ddpw_administration_builder_panel_item > div{
+	padding: 5px;
+	cursor: pointer;
+}
+
+.buttonOptionsContainer > .builderPanelItemResponseOptionContainer{
+    padding: 5px;
+}
+#builderPanel li.ui-state-hover {
+    background: #CCCCFF;
+}
+.response_option.ui-state-hover {
+    background: #dfdfFF;
+    border:none;
+}
+
+#builderPanel li.ui-state-hover.ui-state-active , 
+.response_option.ui-state-hover.ui-state-active {
+    background: #ffffcc;
+    border: #9999ff 1px solid;
+}
+
+.response_option {
+       padding: 3px;
+       font-size: 11px;
+    }
+
+#builderPanel li.ui-state-active, .response_option.ui-state-active {
+    background: #ffff66;
+    border:#6666ff 1px solid;
+}
+
+.multiSelectDataGridContainer{
+	overflow: auto;
+	font-size: .85em;
+}
+
+.dataTables_paginate {
+	width: 95px;
+	* width: 50px;
+	float: right;
+	text-align: right;
+}
+
+/* Pagination nested */
+.paginate_disabled_previous, .paginate_enabled_previous, .paginate_disabled_next, .paginate_enabled_next {
+	height: 19px;
+	width: 40px;
+	margin-left: 3px;
+	float: left;
+}
+
+
+/*********************************** Properties Panel *********************************************************/
+#propertiesPanel{
+	background-color: #efefef;
+}
+#propertiesPanel > div {
+	margin: 10px 2px;
+}
+
+div #propertiesPanelMenuContainer {
+    padding:0px;
+    margin:0px;
+}
+#propertiesPanelMenu {
+    border-bottom: 3px groove #666666;
+    padding:0px 0px 5px;
+    margin:0px 0px 5px;
+}
+
+#propertiesPanelMenu button {
+    padding:1px;
+    display:inline;
+    margin:1px;
+    font-size:10px;
+}
+
+#propertiesPanelMenu button span{
+    position:relative;
+    padding:0px;
+    display:block;
+    line-height:10px;
+}
+
+#propertiesPanelMenu button span.ui-button-icon-primary{
+    margin:0px auto; 
+    left:0%;   
+}
+
+#tools_panel li {
+	margin: 2px;
+	width: 100%;
+}
+
+#tools_panel li button{
+	width: 95%;
+}
+
+.responseOptionContainer .addCommand, .responseOptionContainer .delete {
+	width:20px;
+	height:20px;
+	margin:0px;
+}
+
+#propertiesPanelPromptTypeControlsContainer table {
+		width:100%;
+	}
+.required-forced .spacer{
+		width:30px;
+		float:left;
+	}
+.required-forced input{
+            vertical-align: top;
+            margin: 0px 0px 0px 15px;
+	}
+.required-forced label{
+            vertical-align: top;
+            margin: 5px 0px 0px 3px;
+            display: block;
+	}
+div.required-forced {
+		width:95%;
+		font-size:10px;
+		vertical-align:bottom;
+	}
+.required-forced div {
+		float:left;
+	}
+	
+.filterSelectionsList {
+    clear: both;
+    border-bottom: 1px solid #666666;
+    margin:4px;
+}
+
+.filterSelectionsList .clear{
+    clear: both;
+    margin:0px;
+    padding:0px;
+    font-size:4px;
+}
+	
+.filterSelectionListItemHeader {
+    font-size:10px;
+    font-weight: bold;
+    width:100%;
+    border-top: 1px solid #666666;
+    background-color: #f6f6f6;
+    margin:0px;
+}
+
+	
+.filterSelectionListItem {
+    font-size:10px;
+    width:100%;
+    border-top: 1px solid #666666;
+    background-color: #fefefe;
+    margin:0px;
+}
+
+.filterSelectionListItem div, .filterSelectionListItemHeader div{
+    width: 45%;
+    position: relative;
+    float:left;
+    padding: 1px;
+    margin: 0px;
+}
+
+.filterSelectionListItem div{
+    margin:1px;
+    padding:0px;
+}
+
+button.removeFilter {
+    position: relative; 
+    margin: 0px;
+    padding: 0px;
+    top: 1px;
+    left: 3px;
+    height: 15px;
+    width: 15px;
+}
+/*********************************** Classifications Panel (within properties panel) *********************************************************/
+#propertiesPanelClassificationPanel {
+    background-color: #fefefe;
+    border: 1px solid #999999;
+    margin: 10px 0px;    
+}
+
+.selectedClassificiationsGroupsContainer {
+    font-size:.8em;
+}
+
+.selectedClassificiationsGroupsContainer ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+.selectedClassificiationsGroupsContainer ul li{ 
+    margin: 3px;
+    padding: 2px;
+}
+
+
+.selectedClassificiationsGroupsContainer ul li button{
+    float: right;
+}
+/*********************************** END Classifications Panel (within properties panel) *********************************************************/
+/*********************************** Classifications Dialog *********************************************************/
+
+#classificationDialog {
+    background-color: #e3e3d0;
+    padding: 15px;
+    overflow: hidden;
+}
+.classificationDialog {
+    margin:15px;
+    padding: 0px;
+    position:absolute;
+}
+.classificationGroup  {
+    background-color: #ebebe3;
+    font-size:.75em;
+    line-height: 1em;
+    border: 1px inset #ebebe3;
+}
+
+.classificationListContainer {
+    height: 300px;
+    margin:auto;
+    overflow: auto;
+}
+
+#classificationGroupsTable {
+    height: 300px;
+}
+
+#classificationGroupsTableContainer{
+    overflow: auto;
+    border: 2px dotted #666666;
+    margin:0px;
+}
+#classificationsControlsContainer {
+    bottom: 0px;
+    left:0px;
+    width: 100%;
+    text-align: right;
+    border-top: 1px solid #999999;
+    background-color: #c9c9c3;
+    padding: 10px 0px 5px 0px;
+}
+/*********************************** END Classifications Dialog *********************************************************/
+
+
+/*********************************** Commands Dialog *********************************************************/
+.command-controls-container {
+    bottom:0px;
+    right: 10px;
+    height: 50px;
+    width: 100%;
+    position:absolute;
+text-align: right;
+}
+
+#commandsDialogLeftPanel { 
+    float:left;
+    width:30%;    
+    }
+
+#commandsDialogRightPanel  {
+    float:left;
+    width:65%;
+    margin: 12px 15px;
+    padding: 0px;
+}
+
+.createTicketItemContainer .envVarListDiv select.environmentVarList{
+    display: none;	
+}
+	
+.createTicketItemContainer .customValDiv input.customValue {				
+    display: none;				
+}
+.createTicketItemContainer.custom .customValDiv input.customValue{			
+	    display: block;			
+	}
+.createTicketItemContainer .customValDiv textarea.customValue {				
+    display: none;				
+}
+.createTicketItemContainer.custom .customValDiv textarea.customValue{			
+	    display: none;			
+	}
+	
+.prefillPromptContainer .envVarListDiv select.environmentVarList{
+    display: none;	
+}
+	
+.prefillPromptContainer .customValDiv input.customValue {				
+    display: none;				
+}
+.prefillPromptContainer.custom .customValDiv input.customValue{			
+	    display: block;			
+	}
+.prefillPromptContainer .customValDiv textarea.customValue {				
+    display: none;				
+}
+.prefillPromptContainer.custom .customValDiv textarea.customValue{			
+	    display: none;			
+	}
+	
+/*********************************** END Commands Dialog *********************************************************/
+/*********************************** Commands Item Renderer *********************************************************/
+.responseOptionItemContainer ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.responseOptionItemContainer ul li{
+    margin: 0px;
+    padding: 3px;
+    border-left: 1px solid #666666;
+    width: 270px;
+}
+
+.responseOptionItemContainer ul li.clear{
+    margin: 0px;
+    padding: 0px;
+    border-left: 0px solid #666666;
+    float:left;
+    height: 5px;
+}
+
+.level3_ddpw_administration_commands_item {
+    font-size:10px;
+    float:left;
+}
+
+.level3_ddpw_administration_commands_item > span:first-child{
+    float:left;
+}
+
+.level3_ddpw_administration_commands_item > span:last-child{
+    position:absolute;
+    right:0px;
+    text-align:right;
+}
+
+
+/*********************************** END Commands Item Renderer *********************************************************/
+
+/*********************************** BEGIN Preview Panel *********************************************************/
+.classificationSelectionContainer {
+	float:left;
+	font-size: 10px;
+	margin: 0px 15px;
+
+}
+
+.classificationSelectionContainer select{
+	font-size: 11px;
+	width:130px;
+}
+
+#classificationContainer {
+	border-bottom: 1px solid gray;
+}
+
+#previewPanel {
+	height: 500px;
+	overflow: none;
+	}
+	
+#previewPanelTreeTitle {
+	margin: 3px 0px;	
+}
+
+.reset-preview-panel {
+	float:right;
+	font-size:10px;
+	padding:0px;
+	margin:-5px 3px;
+}
+
+#previewPanelListContainer {
+	padding: 5px;
+	overflow-y: scroll;
+	height: 400px;
+	}
+	
+.level3_ddpw_administration_library_level3_ddpw_utilities_tools_preview_panel_simple_dialog .response_option,
+.level3_ddpw_administration_library_level3_ddpw_utilities_tools_execution_view_simple_dialog .response_option {
+    display:inline;
+    padding: 0px;
+    margin:0px;
+}
+
+.level3_ddpw_administration_library_level3_ddpw_utilities_tools_preview_panel_simple_dialog .response_option button,
+.level3_ddpw_administration_library_level3_ddpw_utilities_tools_execution_view_simple_dialog .response_option button{
+    padding: 0px;
+    margin:0px;
+}
+
+.multiSelectDataGridTable tr.row_selected {
+	background-color : #ffee99;
+}
+
+.multiSelectDataGridTable tr.row_selected td.sorting_1,
+.multiSelectDataGridTable tr.row_selected td.sorting_2,
+.multiSelectDataGridTable tr.row_selected td.sorting_3
+{
+	background-color : #eeff66;
+}
+
+#previewPanelListContainer .section_container {
+	margin-top:14px;
+	
+}
+
+#previewPanelListContainer .action_button {
+	border: 1px solid lightGrey;
+	background: #CCC url(/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/images/myL3primaryBtn.gif) repeat-x 0 -20px;
+	font-weight: normal;
+	color: white;
+	background-color: #F1582A;
+	
+}
+
+
+/*********************************** END Preview Panel *********************************************************/
+/*********************************** BEGIN Outline Panel *********************************************************/
+#outlinePanel {
+	height: 500px;
+    padding: 2px;
+    overflow: scroll;    
+}
+
+#outlineClassificationSelectionsForm {
+	font-size: 10px;
+	margin: 0px 15px;
+}
+
+#outlineClassificationSelectionContainer{
+	display: none;
+	font-size: 10px;
+}
+
+#outlineClassificationSelectionsForm {
+	border-bottom: 1px solid gray;
+}
+
+#outlineClassificationSelectionsForm div.selection-container{
+	float:left;
+}
+#outlineClassificationSelectionsForm div.selection-container select{
+	width:120px;
+	margin: 0px 15px;
+}
+
+// Command Dialog 
+
+div.createTicketDetailsContainer {
+	 width:100%;
+	 height: 210px; 
+	 margin-top:5px; 
+	 overflow: scroll;
+	}
+
+
+.createTicketItemContainer div.createTicketValues {
+	width:48%; 
+	float: right;
+	}
+	
+.createTicketItemContainer div.createTicketPropertiesSelect {
+		width:46%; 
+		float: left;
+		}	
+	
+.createTicketItemContainer select {
+	width: 150px;
+	}
+	
+envVarListDiv {
+	width:100%;
+//	 height:25px; 
+	 float:right;
+	 display:none;
+	}
+	
+div.envVarListDiv select.environmentVarList{
+	width:120px; 
+	height:20px;
+	display:none;
+	}
+
+.customValDiv {
+	width:100%;
+//	 height:15px; 
+	 float:right;	
+	}
+	div.customValDiv input.customValue {
+	width:120px; 
+	height:10px;
+	display:none;
+	}
+	
+div.offChangeDiv {
+			display:none;
+	}
+	
+/*button.addAnotherCommandOptionButton {
+	float:right; 
+	position: absolute; 
+	bottom:48px;
+	margin-left: 10px;
+	}
+
+
+/*********************************** END Outline Panel *********************************************************/
+/*
+.level3_ddpw_administration_prompt_tree_item .info {
+    text-align:left;
+    font-size:10px;
+    padding:0px;
+    margin:0px;
+    line-height:10px;
+}
+
+
+h1 {
+	padding:30px 0 10px;
+	margin-top:0;
+	line-height:30px;
+}
+
+
+a {
+	color:#ae3d26;
+	text-decoration:none;
+}
+
+a:hover { text-decoration:underline; }
+
+hr {
+	border:none;
+	border-top:1px dotted #000;
+}
+
+.applicationContainer {
+	border: 1px solid #777777;	
+}
+
+
+.bottom {
+	position:relative;
+	bottom:0px;
+}
+
+
+*/
+

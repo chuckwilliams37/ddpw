@@ -1,0 +1,40 @@
+<% for (var i=this.i; i < this.attrlength ; i++) {%>
+			<div class="createTicketItemContainer" style="width: 100%; height:75px; margin:4px 0 4px 0;">		
+				<div class="createTicketPropertiesSelect" style="float:left; width:50%;">
+					<select name="ticketProperties[<%= this.i %>]" class="createTicketPropetiesName" style="width:120px;">
+					   <% for (var k=0; k < this.environmentVarList.length ; k++) {%> 		
+					   <option value="<%=this.environmentVarList[k]%>"  <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketProperties[i]  == this.environmentVarList[k] ? "selected" : "" :"":""%>><%=this.environmentVarList[k]%></option>
+					   <%}%>		 														
+					</select>
+				</div>
+				<div id = "createTicketValues" class="createTicketValues" style="float:right; width:44%;">
+						<select id="ticketValueSource[<%= i %>]" name="ticketValueSource[<%= i %>]" 
+								class="selectTicketValues" style="width:120px;">						
+							<option value="UsersSelectedResponse" 
+							         <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketValueSource[i] == "UsersSelectedResponse" ? "selected" : "" :"":""%> >
+							         UsersSelectedResponse</option>
+							<option value="EnvironmentVariable" 
+							         <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketValueSource[i] == "EnvironmentVariable" ? "selected" : "" :"":""%> >
+							         EnvironmentVariable</option>	
+						    <option value="Custom"
+						            <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketValueSource[i]  == "Custom" ? "selected" : "" :"":""%>>
+							       Custom</option>
+						</select>
+						<button class="remove-command-option" title="Remove Property" />
+						<div class="customValTextAreaDiv" style="float:left;">	
+						     <textarea id="ticketCustomValue[<%= i %>]" class="customValue"  cols="10" rows="1" name="ticketCustomValue[<%= i %>]">
+						     	<%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.ticketCustomValue[ i ] ? this.command.commandData.formParams.ticketCustomValue[ i ] : '' : '':'' %>
+						     </textarea>	
+							</div>	
+						
+						
+						
+							<div class="envVarListDiv">							
+							<select name="envProperties[<%= i %>]" id="envProperties[<%= i %>]" class="environmentVarList" style="width:100px;">
+							<% for (var k=0; k < this.environmentVarList.length ; k++) {%>
+								<option value="<%=this.environmentVarList[k]%>"  <%= this.command.commandData ? this.command.commandData.formParams ? this.command.commandData.formParams.envProperties[i]  == this.environmentVarList[k] ? "selected" : "" :"":""%>><%=this.environmentVarList[k]%></option>
+							<%}%>
+								</select>
+					</div>
+			</div>
+<%}%>

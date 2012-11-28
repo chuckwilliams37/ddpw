@@ -1,0 +1,20 @@
+<div class="ui-widget"> 
+	<div class="ui-widget ui-widget-header">
+		<%= this.command.label %>
+	</div>
+	<div>
+		<%= this.command.description %>
+	</div>
+</div>
+<div class="ui-widget ui-widget-header">
+	Command Settings
+</div>
+<% var pluginName = this.command.getController('create_command_form')._fullName; %>
+<div id="commandDetailsFormContainer" class="ui-widget" <%= plugin( pluginName , { command : this.command } ) %> > 
+	
+</div>
+<div class="ui-widget command-controls-container">
+	<button class="save-command-close">Save Command and Close</button>
+	<button class="save-command-new">Save Command and New</button>
+	<button class="cancel-command" >Cancel</button>
+</div>

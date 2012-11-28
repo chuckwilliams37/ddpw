@@ -1,0 +1,35 @@
+<div  
+<%= plugin('level3_ddpw_administration_library_level3_ddpw_utilities_tools_execution_view_simple_dialog', { prompt: this }) %>
+>
+	<p class="simple-dialog-text"><%= this.text %></p>
+	<div class="simple_dialog_button_container" >
+		<% 
+			if ( 
+				typeof ( this.responseOptions ) != 'undefined'
+				&& typeof ( this.responseOptions.each ) != 'undefined'
+			 ) {
+				
+				this.responseOptions.each ( function (index, responseOption ) {
+				%>
+				<div <%= responseOption %> >
+					<% 
+						var inputId = "responseOption_" + responseOption.identity() + index;
+					%> 
+					<label for="<%=inputId%>"> <%= responseOption.label %> </label>
+					<input type="checkbox" style="display: none;" id="<%= inputId %>" value="<%= responseOption.value %>" 
+						<% if ( responseOption.isSelected () ) { %>
+								checked="checked"
+						<%}%>
+					></input>
+				</div>
+			<% 
+				});
+			} %>
+	</div>
+</div>
+
+
+
+
+
+			

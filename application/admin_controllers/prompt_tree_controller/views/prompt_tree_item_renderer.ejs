@@ -1,0 +1,10 @@
+<li <%= [this,Level3_ddpw_administration.Controllers.PromptTreeItemController] %> >
+	<div class="is-in-effect">
+		<input title="This checkbox indicates which tree is currently 'Active' and will be presented to users for the <%= $.cookie("domain") %> domain." type="checkbox" value="true" <%= this.isAlwaysEffective == true ? 'checked disabled="disabled"' : '' %> /> 
+	</div>
+	<div class="button_label">
+		<span class="title"><%= name.substring(0,30) %></span>
+		
+	</div>
+	<button class='destroy' <%= this %>>Delete <%= this.name %></button>
+</li>

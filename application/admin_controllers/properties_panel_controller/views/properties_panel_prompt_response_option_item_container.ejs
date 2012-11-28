@@ -1,0 +1,29 @@
+<tr class="responseOptionItemContainer" width="100%" <%= this.option %> >
+	<td width="100%" colspan="3">
+	<table cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td width="40%">
+				<input type="text" size="14" name="responseOptions[<%= this.i %>][label]" value="<%=  option['label'] %>" />
+			</td>
+			<td width="20%">
+				<input type="text" size="6" name="responseOptions[<%= this.i %>][value]" value="<%= option['value'] %>" />
+			</td>
+			<td width="20%">
+				<button class="addCommand" title="Add Commands"></button>
+				<button class="delete" title="Delete"></button>
+			</td>
+		</tr>
+	<% 
+	if (this.commandsExist) {
+		%>
+		<tr>
+			<td colspan="3" width="100%">
+				<%== $.View("./application/admin_controllers/commands_item_controller/views/commands_list_container.ejs",{commands: this.commands}) %>
+			</td>
+		</tr>
+		<%
+	}
+	%>
+	</table>
+	</td>
+</tr>

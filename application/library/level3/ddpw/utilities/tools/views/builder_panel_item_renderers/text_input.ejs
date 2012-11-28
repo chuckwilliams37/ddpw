@@ -1,0 +1,14 @@
+<div>
+	<p><%= this.text %></p>
+	
+		<% 
+		var selectedResponse = this.getSelectedResponse() ? this.getSelectedResponse()[0] : this.getDefaultResponse()[0]
+		this.responseOptions.each ( function (index, responseOption ) { 
+			
+			%>
+			<div class="builderPanelItemResponseOptionContainer" <%= responseOption %>>
+				<input type="text" value="<%= selectedResponse['value'] %>" disabled="true" /> <br />
+				<%== $.View('./application/admin_controllers/builder_panel_controller/views/builder_panel_prompt_list_container.ejs', responseOption )%>
+			</div>
+		<% }); %>
+</div>

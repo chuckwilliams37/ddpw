@@ -1,0 +1,21 @@
+<div id="previewPanelTreeContainer" class="ui-widget " style="float: none">
+	<div id="classificationComponents" >
+		<p>Retrieving classifications...<p>
+	</div>
+	
+	<div id="command_controller" class="command-controller hidden" <%= Level3_ddpw_execution.Controllers.CommandController %>  />
+	
+	<div id="previewPanelTreeTitle" align="left"  class="ui-widget ui-widget-header ui-corner-all">
+		<%=this.treeName %> 
+		<button class="reset-preview-panel">Reset</button>
+	</div>
+	
+	<div <%=this%> >
+	<form id="<%= this.formId %>" action="#" method="get" >
+		<%== Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.getValidationControllerHtmlTemplate('preview_panel') %>
+		<div id="previewPanelListContainer" class="ui-widget ui-widget-content">
+			
+		<div>
+	</form>
+	<div>
+</div>

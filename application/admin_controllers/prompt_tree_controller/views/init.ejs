@@ -1,0 +1,20 @@
+<div>
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix">
+		Question Trees:
+	</div>
+	<div class="prompt-tree-controls ui-widget controls-container">
+		<button id='invoke_create'>New</button >
+		<button class="copy-tree-button">Copy</button>
+		<button class="export-tree-button">Export</button>
+		<button class="import-tree-button" >Import</button >
+	</div>
+	<ul id="prompt_trees" >
+	<%
+	var promptTreeCollection = this.options.promptTreeCollection;
+	for(var i = 0; i < promptTreeCollection.length ; i++){
+		%>
+		<%== $.View('./application/admin_controllers/prompt_tree_controller/views/prompt_tree_item_renderer.ejs', promptTreeCollection[i] )%>
+	<%}%>
+	</ul>
+</div>	
+

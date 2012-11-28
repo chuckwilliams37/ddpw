@@ -1,0 +1,75 @@
+/*********************************** BEGIN Jquery-ui fixes due to flubbed over jquery-ui-base.css *********************************************************/
+.ui-button.ui-state-active {
+        background: url(/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/images/ui-bg_glass_100_fdf5ce_1x400.png) repeat-x center center !important;
+}
+.ui-button.ui-state-hover {
+        background: #fdf5ce url(/portalWeb/framework/skins/l3enabledportal_nov2008/css/jquery-ui/images/ui-bg_highlight-soft_100_eeeeee_1x100.png) repeat-x center center !important;        
+}
+.ui-button.ui-state-active span, .ui-button.ui-state-hover span{
+        color: #f6a828;
+}
+
+/*********************************** BEGIN  Panel *********************************************************/
+#ddpw_main {
+	/*height: 400px;
+	overflow: auto;*/
+	}
+	
+#execution-main-container {
+	width:76%
+	}
+.classificationSelectionContainer {
+	float:left;
+	font-size: 10px;
+	margin: 0px 15px 5px 0px;
+
+}
+
+.classificationSelectionContainer select{
+	font-size: 11px;
+	width:130px;
+}
+
+.level3_ddpw_administration_library_level3_ddpw_utilities_tools_preview_panel_simple_dialog .response_option,
+.level3_ddpw_administration_library_level3_ddpw_utilities_tools_execution_view_simple_dialog .response_option {
+    display:inline;
+    padding: 0px;
+    margin:0px;
+}
+
+.level3_ddpw_administration_library_level3_ddpw_utilities_tools_preview_panel_simple_dialog .response_option button,
+.level3_ddpw_administration_library_level3_ddpw_utilities_tools_execution_view_simple_dialog .response_option button{
+    padding: 0px;
+    margin:0px;
+}
+
+#classificationContainer {
+	border-bottom: 1px solid gray;
+}
+
+#previewPanelTreeTitle {
+	margin: 30px 0px;	
+}
+
+.reset-preview-panel {
+	float:right;
+	font-size:10px;
+	padding:0px;
+	margin:0px 3px;
+}
+
+#previewPanelListContainer {
+	padding: 5px;
+	}
+	
+ul.preview-panel-prompt-list-container li {
+	background: none;
+}
+
+ul.execution-view-prompt-list-container li {
+	background: none;	
+}
+
+.exectionNextButton {
+margin: 5px 5px 5px 0px;
+}

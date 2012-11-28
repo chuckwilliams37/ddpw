@@ -1,0 +1,22 @@
+<% for (var groupKey in this.classificationGroups) { 
+	var groupName = this.classificationGroups[groupKey];
+%>
+
+<div class="ui-widget ui-widget-header">
+	<%= groupName %>
+</div>
+
+<ul class="classificationPanelGroup">
+	<% 
+		for (var classificationKey=0; classificationKey< this.selectedModel.classifications.length; classificationKey++) {
+		var classification = this.selectedModel.classifications[classificationKey];
+		
+		if (classification.type.toLowerCase() == groupName.toLowerCase()) {	
+		%>
+			
+			<%== $.View ("./application/admin_controllers/classification_panel_controller/views/classification_panel_classification_item_renderer.ejs" , {classification : classification, classification_key:classificationKey} )%>
+		<%}%>
+	<%}%>
+</ul>
+
+<%}%>

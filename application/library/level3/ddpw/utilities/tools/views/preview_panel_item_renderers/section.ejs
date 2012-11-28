@@ -1,0 +1,24 @@
+<div class="section_container"
+	<%= plugin('level3_ddpw_administration_library_level3_ddpw_utilities_tools_preview_panel_section', 
+	{ 	sectionModel : this,
+		_isMarkedComplete : this._isMarkedComplete //we need to initialize here because this is render time.
+	}) %>
+	>
+	<div class="l3_blockcontainer">         
+		<div class="section_list_outer_container" >
+		<% if (typeof (this.prompts) != 'undefined' && this.prompts.length > 0) { %>
+			<ul class="section_list_container" >
+				<% for (var i=0; i < this.prompts.length ; i++ ) { 
+					var prompt = this.prompts[i];
+					%>
+					<%== $.View('./application/admin_controllers/preview_panel_item_controller/views/preview_panel_prompt_item_container.ejs', prompt )%>
+				<%}%>
+			</ul>
+		<%}%>
+		</div>
+	</div>
+	<div style="border-top: 1px solid #ed1b2f; margin-right: 6px; margin-left: 3px; ">&nbsp;</div>
+	<div class="section_actions">
+		<button class="action_button smallSizeBtn">Continue</button>
+	</div>
+</div>

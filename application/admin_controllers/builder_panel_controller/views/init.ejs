@@ -1,0 +1,12 @@
+
+<div id="builderPanelTreeContainer" class="ui-widget " <%= this %> >
+	<div class="ui-widget ui-widget-default" >
+		<div id="builderPanelTreeTitle" class="ui-widget-header">
+			<%= this.name %>
+		</div>
+		<div id="builderPanelTreeDescription" class="ui-widget-content"><%= this.description %></div>
+		<hr />
+	</div>
+	<%== $.View('./application/admin_controllers/builder_panel_controller/views/builder_panel_prompt_list_container.ejs', this )%>
+	
+</div>

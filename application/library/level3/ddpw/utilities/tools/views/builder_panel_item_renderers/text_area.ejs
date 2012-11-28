@@ -1,0 +1,12 @@
+<div>
+	<p><%= this.text %></p>
+	
+	<% this.responseOptions.each ( function (index, responseOption ) { 
+			%>
+		<div class="builderPanelItemResponseOptionContainer" <%= responseOption %>>
+			<textarea rows="3" cols="40" disabled="true"><%= responseOption.value  %></textarea><br />
+			<%== $.View('./application/admin_controllers/builder_panel_controller/views/builder_panel_prompt_list_container.ejs', responseOption )%>
+		</div>
+	<% }); %>
+
+</div>

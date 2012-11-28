@@ -1,0 +1,16 @@
+<% var underscoredGroupName = $.String.underscore(this.groupName) %>
+<div class="classificationSelectionContainer" >
+	<label> <%= this.groupName %></label>
+		<br />
+		<select name="classifications[<%=underscoredGroupName%>][0]" id="<%=underscoredGroupName%>dropdown" class="classification-components-select">
+		<% 
+			for (var i=0; i < this.classificationNames[this.classificationGroupNames[this.key]].length ; i++ ) {
+				var optionValue = this.classificationNames[this.classificationGroupNames[this.key]][i];
+				var isOptionSelected = $.inArray ( optionValue, this.selectedClassifications[underscoredGroupName] ) >= 0 ? true : false;
+		%>
+			<option value="<%= optionValue %>"
+				<%= isOptionSelected ? "selected" : "" %>
+			><%= optionValue %></option>
+			<%	}%>
+	</select>
+</div>

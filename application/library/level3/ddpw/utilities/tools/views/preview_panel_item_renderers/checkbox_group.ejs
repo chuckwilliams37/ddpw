@@ -1,0 +1,16 @@
+<div>
+	<p><%= this.text %></p>
+	<% var selectedResponse = this.attr("selectedResponse"),prompt = this; %>
+	<% 
+		this.responseOptions.each ( function (index, responseOption ) {
+		%>
+		<div class="previewPanelItemResponseOptionContainer" <%= responseOption %>>
+			<input type="checkbox" value="<%= responseOption.value %>" name="<%=prompt.identity()+'_checkbox_group'%>" 
+			title="VALUE: <%= responseOption.value %>" 
+			<% if ( responseOption.isSelected () ) { %>
+					checked="true"
+			<%}%>
+			/><%= responseOption['label']%> <br/>
+		</div>
+	<% }); %>
+</div>

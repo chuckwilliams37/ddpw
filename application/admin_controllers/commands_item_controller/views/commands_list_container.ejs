@@ -1,0 +1,14 @@
+<%	
+if (this.commands.each) { %>
+<ul style="width:100%;">
+	<%
+	this.commands.each ( function ( commandIndex, command) 
+	{
+			%>
+			<%== $.View("./application/admin_controllers/commands_item_controller/views/commands_item_renderer.ejs",{command: command}) %>
+			<% 
+	}); 
+	%>
+	<li class="clear">&nbsp;</li>
+</ul>
+<% } %>

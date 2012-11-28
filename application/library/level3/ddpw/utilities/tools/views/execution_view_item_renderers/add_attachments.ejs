@@ -1,0 +1,24 @@
+<div  
+<%= plugin('level3_ddpw_administration_library_level3_ddpw_utilities_tools_execution_view_add_attachments', { prompt: this }) %>
+>
+	<p class="add-attachments-text"><%= this.text %></p>
+	<div class="add_attachments_button_container" >
+		<% 
+			this.responseOptions.each ( function (index, responseOption ) {
+			%>
+			<div <%= responseOption %> >
+				<% var inputId = "responseOption_" + responseOption.identity() + index %> 
+				<input type="checkbox" id="<%= inputId %>" value="<%= responseOption.value %>" <% if ( responseOption.isSelected () ) { %>
+					checked="true"
+				<%}%> />
+				<label for="<%=inputId%>"> <%= responseOption.label %> </label>
+			</div>
+		<% }); %>
+	</div>
+</div>
+
+
+
+
+
+			

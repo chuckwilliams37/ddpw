@@ -1,0 +1,22 @@
+<div id="propertiesPanelPrompt">
+	<form <%=this.selectedModel %>>
+		<div>
+			<label for="text">Title</label>
+			<input type="text" name="text" id="text" value="<%= this.selectedModel.text %>"/>
+			<div id="prefill" >
+				<% for(var i=0;i<this.selectedModel.prefillData.length;i++) {%>
+					<%== $.View ( "./application/admin_controllers/prompt_prefill_controller/views/prefill_prompt.ejs", {selectedModel:this.selectedModel,environmentVarList:this.environmentVarList,i:i  } ) %>
+				<% } %>
+			</div>
+		</div>
+		<%== $.View("./application/library/level3/ddpw/utilities/tools/views/properties_panel_item_renderers/div_required_forced.ejs", this.selectedModel ) %>
+		<div id="propertiesPanelPromptTypeControlsContainer">
+			<%== $.View("./application/admin_controllers/properties_panel_controller/views/properties_panel_prompt_response_options_list_container.ejs",{responseOptions : this.selectedModel.responseOptions , commands : this.selectedModel.commands}) %>
+		</div>
+		<button class="addAnotherResponseOption"> Add Another Selection</button>
+		<div>
+			<button id="saveButton">Save</button>
+			<button id="cancelButton">Cancel</button>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,20 @@
+<%# console.debug ("rendering select item: " , this ) %>
+
+<div>
+	<p><%= this.text %></p>
+	<% var selectedResponse = this.attr("selectedResponse"); %>
+	
+	<select>
+		<% 
+		this.responseOptions.each ( function ( index, responseOption ) {%>
+			<option value="<%= responseOption['value']%>"
+			<% if ( responseOption.isSelected () ) { %>
+					selected="true"
+			<%}%>
+			>
+				<%= responseOption['label'] %>
+			</option>
+		<% 
+		}); %>
+	</select>
+</div>

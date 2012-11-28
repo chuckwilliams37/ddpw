@@ -1,0 +1,14 @@
+<div>
+	<p><%= this.text %></p>
+	<% 
+		this.responseOptions.each ( function (index, responseOption ) {
+		%>
+		<div class="builderPanelItemResponseOptionContainer" <%= responseOption %>>
+			<input type="checkbox" value="<%= responseOption.value %>" title="VALUE: <%= responseOption.value %>" disabled="true" />
+			<%= responseOption['label']%> <br/>
+			<%== $.View('./application/admin_controllers/builder_panel_controller/views/builder_panel_prompt_list_container.ejs', responseOption )%>
+		</div>
+		
+	<% }); %>
+	
+</div>

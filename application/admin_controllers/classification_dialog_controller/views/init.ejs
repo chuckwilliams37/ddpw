@@ -1,0 +1,24 @@
+<div id="classificationDialog" class="ui-widget ui-widget-header" title="Display To:" 
+<%= plugin('level3_ddpw_administration_classification_dialog', { selectedModel: this.selectedModel }) %>
+>
+	<form>	
+	<div class="ui-widget ui-widget-content">
+		<%# this only gets checked if there are "NO" Classifications assigned %>
+		<input id="General[item0]" type="checkbox"  value="Everyone" name="General" class="everyoneSelection"><label for="General[item0]"> Everyone </label>
+		<input style="display:none;" id="General[item1]" type="checkbox"  value="Everyone2" name="General">
+	</div>
+	<div id="classificationGroupsTableContainer">
+		<table id="classificationGroupsTable">
+			<tr >
+				<td>
+					Retrieving Classifications...
+				</td>
+			</tr>
+		</table>
+	</div>
+	<form >
+	<div id="classificationsControlsContainer">
+		<button class="cancelButton" >Cancel</button>
+		<button class="saveButton" >Save</button>
+	</div>
+</div>

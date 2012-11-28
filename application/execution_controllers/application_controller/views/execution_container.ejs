@@ -1,0 +1,14 @@
+
+<div id="command_controller" class="command-controller hidden" <%= Level3_ddpw_execution.Controllers.CommandController %> />
+<%== Level3_ddpw_administration.Library.Level3.Ddpw.Utilities.ToolFactory.getValidationControllerHtmlTemplate('execution_view') %>
+<% if (typeof (this.prompts) != 'undefined' && this.prompts.length > 0) { %>
+	<form id="<%= tree.identity() %>_form" <%= tree %> action="" method="get">
+	<ul class="execution-view-prompt-list-container" >
+		<% for (var i=0; i < this.prompts.length ; i++ ) { 
+			var prompt = this.prompts[i];
+			%>
+			<%== $.View('./application/execution_controllers/application_controller/views/execution_panel_prompt_item_container.ejs', prompt )%>
+		<%}%>
+	</ul>
+	</form>
+<%}%>

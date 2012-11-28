@@ -1,0 +1,31 @@
+<div id="propertiesPanelPrompt">
+	<form <%=this.selectedModel  %>>
+		<div>
+			<label for="text">Title</label>
+			<textarea rows="3" cols="25" name="text" id="text"><%= this.selectedModel.text %></textarea>
+			<div id="prefill" >
+			<p>Default Date:</p>
+			<% for(var i=0;i<this.selectedModel.prefillData.length;i++) {%>
+				<%== $.View ( "./application/admin_controllers/prompt_prefill_controller/views/prefill_prompt.ejs", {selectedModel:this.selectedModel,environmentVarList:this.environmentVarList,i:i  } ) %>
+			<% } %>
+			</div>
+		</div>
+		<%== $.View("./application/library/level3/ddpw/utilities/tools/views/properties_panel_item_renderers/div_required_forced.ejs", this.selectedModel ) %>
+		<div id="propertiesPanelPromptTypeControlsContainer" class="responseOptionsListContainer">
+			
+			<div class="responseOptionItemContainer">
+				<div class="ui-widget-header">
+					<p> Commands <button class="addCommand" title="Add Commands"></button> </p>				
+				</div>
+				<div>
+					<%== $.View("./application/admin_controllers/commands_item_controller/views/commands_list_container.ejs",{commands: this.selectedModel.getSelectedResponse()[0].commands}) %>
+				</div>
+			</div>
+			
+		</div>
+		<div>
+			<button id="saveButton">Save</button>
+			<button id="cancelButton">Cancel</button>
+		</div>
+	</form>
+</div>

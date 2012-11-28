@@ -1,0 +1,31 @@
+<div  id="addAttachmentsMainPanel"
+<%= plugin('level3_ddpw_administration_library_level3_ddpw_utilities_tools_preview_panel_add_attachments', { prompt: this }) %>
+>
+	<p class="add-attachment-text"><%= this.text %></p>
+	<div class="add_attachment_button_container" >
+		<% 
+			if ( 
+				typeof ( this.responseOptions ) != 'undefined'
+				&& typeof ( this.responseOptions.each ) != 'undefined'
+			 ) {
+				
+				this.responseOptions.each ( function (index, responseOption ) {
+				%>
+				<div <%= responseOption %> >
+					<% 
+						var inputId = "responseOption_" + responseOption.identity() + index;
+					%> 
+					<!-- <label for="<%=inputId%>"> <%= responseOption.label %> </label> -->
+				</div>
+			<% 
+				});
+			} %>
+	</div>
+	<div>  <button class="file_upload">Add Attachments</button> </div>
+</div>
+
+
+
+
+
+			
